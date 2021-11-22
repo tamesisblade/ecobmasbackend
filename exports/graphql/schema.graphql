@@ -1,0 +1,6274 @@
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type Cajas {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  repartidor: UsersPermissionsUser
+  debe: Float
+  haber: Float
+  published_at: DateTime
+}
+
+type CajasConnection {
+  values: [Cajas]
+  groupBy: CajasGroupBy
+  aggregate: CajasAggregator
+}
+
+type CajasAggregator {
+  count: Int
+  totalCount: Int
+  sum: CajasAggregatorSum
+  avg: CajasAggregatorAvg
+  min: CajasAggregatorMin
+  max: CajasAggregatorMax
+}
+
+type CajasAggregatorSum {
+  debe: Float
+  haber: Float
+}
+
+type CajasAggregatorAvg {
+  debe: Float
+  haber: Float
+}
+
+type CajasAggregatorMin {
+  debe: Float
+  haber: Float
+}
+
+type CajasAggregatorMax {
+  debe: Float
+  haber: Float
+}
+
+type CajasGroupBy {
+  id: [CajasConnectionId]
+  _id: [CajasConnection_id]
+  createdAt: [CajasConnectionCreatedAt]
+  updatedAt: [CajasConnectionUpdatedAt]
+  repartidor: [CajasConnectionRepartidor]
+  debe: [CajasConnectionDebe]
+  haber: [CajasConnectionHaber]
+  published_at: [CajasConnectionPublished_at]
+}
+
+type CajasConnectionId {
+  key: ID
+  connection: CajasConnection
+}
+
+type CajasConnection_id {
+  key: ID
+  connection: CajasConnection
+}
+
+type CajasConnectionCreatedAt {
+  key: DateTime
+  connection: CajasConnection
+}
+
+type CajasConnectionUpdatedAt {
+  key: DateTime
+  connection: CajasConnection
+}
+
+type CajasConnectionRepartidor {
+  key: ID
+  connection: CajasConnection
+}
+
+type CajasConnectionDebe {
+  key: Float
+  connection: CajasConnection
+}
+
+type CajasConnectionHaber {
+  key: Float
+  connection: CajasConnection
+}
+
+type CajasConnectionPublished_at {
+  key: DateTime
+  connection: CajasConnection
+}
+
+input CajaInput {
+  repartidor: ID
+  debe: Float
+  haber: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editCajaInput {
+  repartidor: ID
+  debe: Float
+  haber: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createCajaInput {
+  data: CajaInput
+}
+
+type createCajaPayload {
+  caja: Cajas
+}
+
+input updateCajaInput {
+  where: InputID
+  data: editCajaInput
+}
+
+type updateCajaPayload {
+  caja: Cajas
+}
+
+input deleteCajaInput {
+  where: InputID
+}
+
+type deleteCajaPayload {
+  caja: Cajas
+}
+
+type CalificacionEmpresas {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  puntaje: Int
+  usuario: UsersPermissionsUser
+  empresa: Empresas
+  comentario: String
+  published_at: DateTime
+}
+
+type CalificacionEmpresasConnection {
+  values: [CalificacionEmpresas]
+  groupBy: CalificacionEmpresasGroupBy
+  aggregate: CalificacionEmpresasAggregator
+}
+
+type CalificacionEmpresasAggregator {
+  count: Int
+  totalCount: Int
+  sum: CalificacionEmpresasAggregatorSum
+  avg: CalificacionEmpresasAggregatorAvg
+  min: CalificacionEmpresasAggregatorMin
+  max: CalificacionEmpresasAggregatorMax
+}
+
+type CalificacionEmpresasAggregatorSum {
+  puntaje: Float
+}
+
+type CalificacionEmpresasAggregatorAvg {
+  puntaje: Float
+}
+
+type CalificacionEmpresasAggregatorMin {
+  puntaje: Float
+}
+
+type CalificacionEmpresasAggregatorMax {
+  puntaje: Float
+}
+
+type CalificacionEmpresasGroupBy {
+  id: [CalificacionEmpresasConnectionId]
+  _id: [CalificacionEmpresasConnection_id]
+  createdAt: [CalificacionEmpresasConnectionCreatedAt]
+  updatedAt: [CalificacionEmpresasConnectionUpdatedAt]
+  puntaje: [CalificacionEmpresasConnectionPuntaje]
+  usuario: [CalificacionEmpresasConnectionUsuario]
+  empresa: [CalificacionEmpresasConnectionEmpresa]
+  comentario: [CalificacionEmpresasConnectionComentario]
+  published_at: [CalificacionEmpresasConnectionPublished_at]
+}
+
+type CalificacionEmpresasConnectionId {
+  key: ID
+  connection: CalificacionEmpresasConnection
+}
+
+type CalificacionEmpresasConnection_id {
+  key: ID
+  connection: CalificacionEmpresasConnection
+}
+
+type CalificacionEmpresasConnectionCreatedAt {
+  key: DateTime
+  connection: CalificacionEmpresasConnection
+}
+
+type CalificacionEmpresasConnectionUpdatedAt {
+  key: DateTime
+  connection: CalificacionEmpresasConnection
+}
+
+type CalificacionEmpresasConnectionPuntaje {
+  key: Int
+  connection: CalificacionEmpresasConnection
+}
+
+type CalificacionEmpresasConnectionUsuario {
+  key: ID
+  connection: CalificacionEmpresasConnection
+}
+
+type CalificacionEmpresasConnectionEmpresa {
+  key: ID
+  connection: CalificacionEmpresasConnection
+}
+
+type CalificacionEmpresasConnectionComentario {
+  key: String
+  connection: CalificacionEmpresasConnection
+}
+
+type CalificacionEmpresasConnectionPublished_at {
+  key: DateTime
+  connection: CalificacionEmpresasConnection
+}
+
+input CalificacionEmpresaInput {
+  puntaje: Int
+  usuario: ID
+  empresa: ID
+  comentario: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editCalificacionEmpresaInput {
+  puntaje: Int
+  usuario: ID
+  empresa: ID
+  comentario: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createCalificacionEmpresaInput {
+  data: CalificacionEmpresaInput
+}
+
+type createCalificacionEmpresaPayload {
+  calificacionEmpresa: CalificacionEmpresas
+}
+
+input updateCalificacionEmpresaInput {
+  where: InputID
+  data: editCalificacionEmpresaInput
+}
+
+type updateCalificacionEmpresaPayload {
+  calificacionEmpresa: CalificacionEmpresas
+}
+
+input deleteCalificacionEmpresaInput {
+  where: InputID
+}
+
+type deleteCalificacionEmpresaPayload {
+  calificacionEmpresa: CalificacionEmpresas
+}
+
+type CalificacionRepartidores {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  puntaje: Int
+  comentario: String
+  repartidor: UsersPermissionsUser
+  orden: Ordenes
+  published_at: DateTime
+}
+
+type CalificacionRepartidoresConnection {
+  values: [CalificacionRepartidores]
+  groupBy: CalificacionRepartidoresGroupBy
+  aggregate: CalificacionRepartidoresAggregator
+}
+
+type CalificacionRepartidoresAggregator {
+  count: Int
+  totalCount: Int
+  sum: CalificacionRepartidoresAggregatorSum
+  avg: CalificacionRepartidoresAggregatorAvg
+  min: CalificacionRepartidoresAggregatorMin
+  max: CalificacionRepartidoresAggregatorMax
+}
+
+type CalificacionRepartidoresAggregatorSum {
+  puntaje: Float
+}
+
+type CalificacionRepartidoresAggregatorAvg {
+  puntaje: Float
+}
+
+type CalificacionRepartidoresAggregatorMin {
+  puntaje: Float
+}
+
+type CalificacionRepartidoresAggregatorMax {
+  puntaje: Float
+}
+
+type CalificacionRepartidoresGroupBy {
+  id: [CalificacionRepartidoresConnectionId]
+  _id: [CalificacionRepartidoresConnection_id]
+  createdAt: [CalificacionRepartidoresConnectionCreatedAt]
+  updatedAt: [CalificacionRepartidoresConnectionUpdatedAt]
+  puntaje: [CalificacionRepartidoresConnectionPuntaje]
+  comentario: [CalificacionRepartidoresConnectionComentario]
+  repartidor: [CalificacionRepartidoresConnectionRepartidor]
+  orden: [CalificacionRepartidoresConnectionOrden]
+  published_at: [CalificacionRepartidoresConnectionPublished_at]
+}
+
+type CalificacionRepartidoresConnectionId {
+  key: ID
+  connection: CalificacionRepartidoresConnection
+}
+
+type CalificacionRepartidoresConnection_id {
+  key: ID
+  connection: CalificacionRepartidoresConnection
+}
+
+type CalificacionRepartidoresConnectionCreatedAt {
+  key: DateTime
+  connection: CalificacionRepartidoresConnection
+}
+
+type CalificacionRepartidoresConnectionUpdatedAt {
+  key: DateTime
+  connection: CalificacionRepartidoresConnection
+}
+
+type CalificacionRepartidoresConnectionPuntaje {
+  key: Int
+  connection: CalificacionRepartidoresConnection
+}
+
+type CalificacionRepartidoresConnectionComentario {
+  key: String
+  connection: CalificacionRepartidoresConnection
+}
+
+type CalificacionRepartidoresConnectionRepartidor {
+  key: ID
+  connection: CalificacionRepartidoresConnection
+}
+
+type CalificacionRepartidoresConnectionOrden {
+  key: ID
+  connection: CalificacionRepartidoresConnection
+}
+
+type CalificacionRepartidoresConnectionPublished_at {
+  key: DateTime
+  connection: CalificacionRepartidoresConnection
+}
+
+input CalificacionRepartidoreInput {
+  puntaje: Int
+  comentario: String
+  repartidor: ID
+  orden: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editCalificacionRepartidoreInput {
+  puntaje: Int
+  comentario: String
+  repartidor: ID
+  orden: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createCalificacionRepartidoreInput {
+  data: CalificacionRepartidoreInput
+}
+
+type createCalificacionRepartidorePayload {
+  calificacionRepartidore: CalificacionRepartidores
+}
+
+input updateCalificacionRepartidoreInput {
+  where: InputID
+  data: editCalificacionRepartidoreInput
+}
+
+type updateCalificacionRepartidorePayload {
+  calificacionRepartidore: CalificacionRepartidores
+}
+
+input deleteCalificacionRepartidoreInput {
+  where: InputID
+}
+
+type deleteCalificacionRepartidorePayload {
+  calificacionRepartidore: CalificacionRepartidores
+}
+
+type Categorias {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  nombre: String
+  descripcion: String
+  icono: UploadFile
+  published_at: DateTime
+  productos(sort: String, limit: Int, start: Int, where: JSON): [Productos]
+  empresas(sort: String, limit: Int, start: Int, where: JSON): [Empresas]
+}
+
+type CategoriasConnection {
+  values: [Categorias]
+  groupBy: CategoriasGroupBy
+  aggregate: CategoriasAggregator
+}
+
+type CategoriasAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CategoriasGroupBy {
+  id: [CategoriasConnectionId]
+  _id: [CategoriasConnection_id]
+  createdAt: [CategoriasConnectionCreatedAt]
+  updatedAt: [CategoriasConnectionUpdatedAt]
+  nombre: [CategoriasConnectionNombre]
+  descripcion: [CategoriasConnectionDescripcion]
+  icono: [CategoriasConnectionIcono]
+  published_at: [CategoriasConnectionPublished_at]
+}
+
+type CategoriasConnectionId {
+  key: ID
+  connection: CategoriasConnection
+}
+
+type CategoriasConnection_id {
+  key: ID
+  connection: CategoriasConnection
+}
+
+type CategoriasConnectionCreatedAt {
+  key: DateTime
+  connection: CategoriasConnection
+}
+
+type CategoriasConnectionUpdatedAt {
+  key: DateTime
+  connection: CategoriasConnection
+}
+
+type CategoriasConnectionNombre {
+  key: String
+  connection: CategoriasConnection
+}
+
+type CategoriasConnectionDescripcion {
+  key: String
+  connection: CategoriasConnection
+}
+
+type CategoriasConnectionIcono {
+  key: ID
+  connection: CategoriasConnection
+}
+
+type CategoriasConnectionPublished_at {
+  key: DateTime
+  connection: CategoriasConnection
+}
+
+input CategoriaInput {
+  nombre: String
+  descripcion: String
+  icono: ID
+  productos: [ID]
+  empresas: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editCategoriaInput {
+  nombre: String
+  descripcion: String
+  icono: ID
+  productos: [ID]
+  empresas: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createCategoriaInput {
+  data: CategoriaInput
+}
+
+type createCategoriaPayload {
+  categoria: Categorias
+}
+
+input updateCategoriaInput {
+  where: InputID
+  data: editCategoriaInput
+}
+
+type updateCategoriaPayload {
+  categoria: Categorias
+}
+
+input deleteCategoriaInput {
+  where: InputID
+}
+
+type deleteCategoriaPayload {
+  categoria: Categorias
+}
+
+type Configuracion {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  nombre: String
+  arranque: Float
+  valor_km: Float
+  iva: Float
+  valor_minimo: Float
+  arranque_repartidor: Float
+  terminos_y_condiciones: String
+  published_at: DateTime
+  horarios(sort: String, limit: Int, start: Int, where: JSON): [Horarios]
+}
+
+type ConfiguracionConnection {
+  values: [Configuracion]
+  groupBy: ConfiguracionGroupBy
+  aggregate: ConfiguracionAggregator
+}
+
+type ConfiguracionAggregator {
+  count: Int
+  totalCount: Int
+  sum: ConfiguracionAggregatorSum
+  avg: ConfiguracionAggregatorAvg
+  min: ConfiguracionAggregatorMin
+  max: ConfiguracionAggregatorMax
+}
+
+type ConfiguracionAggregatorSum {
+  arranque: Float
+  valor_km: Float
+  iva: Float
+  valor_minimo: Float
+  arranque_repartidor: Float
+}
+
+type ConfiguracionAggregatorAvg {
+  arranque: Float
+  valor_km: Float
+  iva: Float
+  valor_minimo: Float
+  arranque_repartidor: Float
+}
+
+type ConfiguracionAggregatorMin {
+  arranque: Float
+  valor_km: Float
+  iva: Float
+  valor_minimo: Float
+  arranque_repartidor: Float
+}
+
+type ConfiguracionAggregatorMax {
+  arranque: Float
+  valor_km: Float
+  iva: Float
+  valor_minimo: Float
+  arranque_repartidor: Float
+}
+
+type ConfiguracionGroupBy {
+  id: [ConfiguracionConnectionId]
+  _id: [ConfiguracionConnection_id]
+  createdAt: [ConfiguracionConnectionCreatedAt]
+  updatedAt: [ConfiguracionConnectionUpdatedAt]
+  nombre: [ConfiguracionConnectionNombre]
+  arranque: [ConfiguracionConnectionArranque]
+  valor_km: [ConfiguracionConnectionValor_km]
+  iva: [ConfiguracionConnectionIva]
+  valor_minimo: [ConfiguracionConnectionValor_minimo]
+  arranque_repartidor: [ConfiguracionConnectionArranque_repartidor]
+  terminos_y_condiciones: [ConfiguracionConnectionTerminos_y_condiciones]
+  published_at: [ConfiguracionConnectionPublished_at]
+}
+
+type ConfiguracionConnectionId {
+  key: ID
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnection_id {
+  key: ID
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionCreatedAt {
+  key: DateTime
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionUpdatedAt {
+  key: DateTime
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionNombre {
+  key: String
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionArranque {
+  key: Float
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionValor_km {
+  key: Float
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionIva {
+  key: Float
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionValor_minimo {
+  key: Float
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionArranque_repartidor {
+  key: Float
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionTerminos_y_condiciones {
+  key: String
+  connection: ConfiguracionConnection
+}
+
+type ConfiguracionConnectionPublished_at {
+  key: DateTime
+  connection: ConfiguracionConnection
+}
+
+input ConfiguracionInput {
+  nombre: String
+  arranque: Float
+  valor_km: Float
+  iva: Float
+  valor_minimo: Float
+  arranque_repartidor: Float
+  horarios: [ID]
+  terminos_y_condiciones: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editConfiguracionInput {
+  nombre: String
+  arranque: Float
+  valor_km: Float
+  iva: Float
+  valor_minimo: Float
+  arranque_repartidor: Float
+  horarios: [ID]
+  terminos_y_condiciones: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createConfiguracionInput {
+  data: ConfiguracionInput
+}
+
+type createConfiguracionPayload {
+  configuracion: Configuracion
+}
+
+input updateConfiguracionInput {
+  where: InputID
+  data: editConfiguracionInput
+}
+
+type updateConfiguracionPayload {
+  configuracion: Configuracion
+}
+
+input deleteConfiguracionInput {
+  where: InputID
+}
+
+type deleteConfiguracionPayload {
+  configuracion: Configuracion
+}
+
+type Correos {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  email: String
+  codigo: String
+  validacion: Boolean
+  published_at: DateTime
+}
+
+type CorreosConnection {
+  values: [Correos]
+  groupBy: CorreosGroupBy
+  aggregate: CorreosAggregator
+}
+
+type CorreosAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CorreosGroupBy {
+  id: [CorreosConnectionId]
+  _id: [CorreosConnection_id]
+  createdAt: [CorreosConnectionCreatedAt]
+  updatedAt: [CorreosConnectionUpdatedAt]
+  email: [CorreosConnectionEmail]
+  codigo: [CorreosConnectionCodigo]
+  validacion: [CorreosConnectionValidacion]
+  published_at: [CorreosConnectionPublished_at]
+}
+
+type CorreosConnectionId {
+  key: ID
+  connection: CorreosConnection
+}
+
+type CorreosConnection_id {
+  key: ID
+  connection: CorreosConnection
+}
+
+type CorreosConnectionCreatedAt {
+  key: DateTime
+  connection: CorreosConnection
+}
+
+type CorreosConnectionUpdatedAt {
+  key: DateTime
+  connection: CorreosConnection
+}
+
+type CorreosConnectionEmail {
+  key: String
+  connection: CorreosConnection
+}
+
+type CorreosConnectionCodigo {
+  key: String
+  connection: CorreosConnection
+}
+
+type CorreosConnectionValidacion {
+  key: Boolean
+  connection: CorreosConnection
+}
+
+type CorreosConnectionPublished_at {
+  key: DateTime
+  connection: CorreosConnection
+}
+
+input CorreoInput {
+  email: String
+  codigo: String
+  validacion: Boolean
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editCorreoInput {
+  email: String
+  codigo: String
+  validacion: Boolean
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createCorreoInput {
+  data: CorreoInput
+}
+
+type createCorreoPayload {
+  correo: Correos
+}
+
+input updateCorreoInput {
+  where: InputID
+  data: editCorreoInput
+}
+
+type updateCorreoPayload {
+  correo: Correos
+}
+
+input deleteCorreoInput {
+  where: InputID
+}
+
+type deleteCorreoPayload {
+  correo: Correos
+}
+
+type Dias {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  key: Int
+  nombre: String
+  horario_empresa: HorarioEmpresas
+  published_at: DateTime
+}
+
+type DiasConnection {
+  values: [Dias]
+  groupBy: DiasGroupBy
+  aggregate: DiasAggregator
+}
+
+type DiasAggregator {
+  count: Int
+  totalCount: Int
+  sum: DiasAggregatorSum
+  avg: DiasAggregatorAvg
+  min: DiasAggregatorMin
+  max: DiasAggregatorMax
+}
+
+type DiasAggregatorSum {
+  key: Float
+}
+
+type DiasAggregatorAvg {
+  key: Float
+}
+
+type DiasAggregatorMin {
+  key: Float
+}
+
+type DiasAggregatorMax {
+  key: Float
+}
+
+type DiasGroupBy {
+  id: [DiasConnectionId]
+  _id: [DiasConnection_id]
+  createdAt: [DiasConnectionCreatedAt]
+  updatedAt: [DiasConnectionUpdatedAt]
+  key: [DiasConnectionKey]
+  nombre: [DiasConnectionNombre]
+  horario_empresa: [DiasConnectionHorario_empresa]
+  published_at: [DiasConnectionPublished_at]
+}
+
+type DiasConnectionId {
+  key: ID
+  connection: DiasConnection
+}
+
+type DiasConnection_id {
+  key: ID
+  connection: DiasConnection
+}
+
+type DiasConnectionCreatedAt {
+  key: DateTime
+  connection: DiasConnection
+}
+
+type DiasConnectionUpdatedAt {
+  key: DateTime
+  connection: DiasConnection
+}
+
+type DiasConnectionKey {
+  key: Int
+  connection: DiasConnection
+}
+
+type DiasConnectionNombre {
+  key: String
+  connection: DiasConnection
+}
+
+type DiasConnectionHorario_empresa {
+  key: ID
+  connection: DiasConnection
+}
+
+type DiasConnectionPublished_at {
+  key: DateTime
+  connection: DiasConnection
+}
+
+input DiaInput {
+  key: Int
+  nombre: String
+  horario_empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editDiaInput {
+  key: Int
+  nombre: String
+  horario_empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createDiaInput {
+  data: DiaInput
+}
+
+type createDiaPayload {
+  dia: Dias
+}
+
+input updateDiaInput {
+  where: InputID
+  data: editDiaInput
+}
+
+type updateDiaPayload {
+  dia: Dias
+}
+
+input deleteDiaInput {
+  where: InputID
+}
+
+type deleteDiaPayload {
+  dia: Dias
+}
+
+type DireccionesUsuarios {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  latitud: Float
+  longitud: Float
+  referencia: String
+  estado: Boolean
+  usuario: UsersPermissionsUser
+  direccion: String
+  ordene: Ordenes
+  published_at: DateTime
+}
+
+type DireccionesUsuariosConnection {
+  values: [DireccionesUsuarios]
+  groupBy: DireccionesUsuariosGroupBy
+  aggregate: DireccionesUsuariosAggregator
+}
+
+type DireccionesUsuariosAggregator {
+  count: Int
+  totalCount: Int
+  sum: DireccionesUsuariosAggregatorSum
+  avg: DireccionesUsuariosAggregatorAvg
+  min: DireccionesUsuariosAggregatorMin
+  max: DireccionesUsuariosAggregatorMax
+}
+
+type DireccionesUsuariosAggregatorSum {
+  latitud: Float
+  longitud: Float
+}
+
+type DireccionesUsuariosAggregatorAvg {
+  latitud: Float
+  longitud: Float
+}
+
+type DireccionesUsuariosAggregatorMin {
+  latitud: Float
+  longitud: Float
+}
+
+type DireccionesUsuariosAggregatorMax {
+  latitud: Float
+  longitud: Float
+}
+
+type DireccionesUsuariosGroupBy {
+  id: [DireccionesUsuariosConnectionId]
+  _id: [DireccionesUsuariosConnection_id]
+  createdAt: [DireccionesUsuariosConnectionCreatedAt]
+  updatedAt: [DireccionesUsuariosConnectionUpdatedAt]
+  latitud: [DireccionesUsuariosConnectionLatitud]
+  longitud: [DireccionesUsuariosConnectionLongitud]
+  referencia: [DireccionesUsuariosConnectionReferencia]
+  estado: [DireccionesUsuariosConnectionEstado]
+  usuario: [DireccionesUsuariosConnectionUsuario]
+  direccion: [DireccionesUsuariosConnectionDireccion]
+  ordene: [DireccionesUsuariosConnectionOrdene]
+  published_at: [DireccionesUsuariosConnectionPublished_at]
+}
+
+type DireccionesUsuariosConnectionId {
+  key: ID
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnection_id {
+  key: ID
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionCreatedAt {
+  key: DateTime
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionUpdatedAt {
+  key: DateTime
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionLatitud {
+  key: Float
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionLongitud {
+  key: Float
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionReferencia {
+  key: String
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionEstado {
+  key: Boolean
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionUsuario {
+  key: ID
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionDireccion {
+  key: String
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionOrdene {
+  key: ID
+  connection: DireccionesUsuariosConnection
+}
+
+type DireccionesUsuariosConnectionPublished_at {
+  key: DateTime
+  connection: DireccionesUsuariosConnection
+}
+
+input DireccionesUsuarioInput {
+  latitud: Float
+  longitud: Float
+  referencia: String
+  estado: Boolean
+  usuario: ID
+  direccion: String
+  ordene: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editDireccionesUsuarioInput {
+  latitud: Float
+  longitud: Float
+  referencia: String
+  estado: Boolean
+  usuario: ID
+  direccion: String
+  ordene: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createDireccionesUsuarioInput {
+  data: DireccionesUsuarioInput
+}
+
+type createDireccionesUsuarioPayload {
+  direccionesUsuario: DireccionesUsuarios
+}
+
+input updateDireccionesUsuarioInput {
+  where: InputID
+  data: editDireccionesUsuarioInput
+}
+
+type updateDireccionesUsuarioPayload {
+  direccionesUsuario: DireccionesUsuarios
+}
+
+input deleteDireccionesUsuarioInput {
+  where: InputID
+}
+
+type deleteDireccionesUsuarioPayload {
+  direccionesUsuario: DireccionesUsuarios
+}
+
+type Direcciones {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  latitud: Float
+  longitud: Float
+  direccion: String
+  empresa: Empresas
+  published_at: DateTime
+}
+
+type DireccionesConnection {
+  values: [Direcciones]
+  groupBy: DireccionesGroupBy
+  aggregate: DireccionesAggregator
+}
+
+type DireccionesAggregator {
+  count: Int
+  totalCount: Int
+  sum: DireccionesAggregatorSum
+  avg: DireccionesAggregatorAvg
+  min: DireccionesAggregatorMin
+  max: DireccionesAggregatorMax
+}
+
+type DireccionesAggregatorSum {
+  latitud: Float
+  longitud: Float
+}
+
+type DireccionesAggregatorAvg {
+  latitud: Float
+  longitud: Float
+}
+
+type DireccionesAggregatorMin {
+  latitud: Float
+  longitud: Float
+}
+
+type DireccionesAggregatorMax {
+  latitud: Float
+  longitud: Float
+}
+
+type DireccionesGroupBy {
+  id: [DireccionesConnectionId]
+  _id: [DireccionesConnection_id]
+  createdAt: [DireccionesConnectionCreatedAt]
+  updatedAt: [DireccionesConnectionUpdatedAt]
+  latitud: [DireccionesConnectionLatitud]
+  longitud: [DireccionesConnectionLongitud]
+  direccion: [DireccionesConnectionDireccion]
+  empresa: [DireccionesConnectionEmpresa]
+  published_at: [DireccionesConnectionPublished_at]
+}
+
+type DireccionesConnectionId {
+  key: ID
+  connection: DireccionesConnection
+}
+
+type DireccionesConnection_id {
+  key: ID
+  connection: DireccionesConnection
+}
+
+type DireccionesConnectionCreatedAt {
+  key: DateTime
+  connection: DireccionesConnection
+}
+
+type DireccionesConnectionUpdatedAt {
+  key: DateTime
+  connection: DireccionesConnection
+}
+
+type DireccionesConnectionLatitud {
+  key: Float
+  connection: DireccionesConnection
+}
+
+type DireccionesConnectionLongitud {
+  key: Float
+  connection: DireccionesConnection
+}
+
+type DireccionesConnectionDireccion {
+  key: String
+  connection: DireccionesConnection
+}
+
+type DireccionesConnectionEmpresa {
+  key: ID
+  connection: DireccionesConnection
+}
+
+type DireccionesConnectionPublished_at {
+  key: DateTime
+  connection: DireccionesConnection
+}
+
+input DireccioneInput {
+  latitud: Float
+  longitud: Float
+  direccion: String
+  empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editDireccioneInput {
+  latitud: Float
+  longitud: Float
+  direccion: String
+  empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createDireccioneInput {
+  data: DireccioneInput
+}
+
+type createDireccionePayload {
+  direccione: Direcciones
+}
+
+input updateDireccioneInput {
+  where: InputID
+  data: editDireccioneInput
+}
+
+type updateDireccionePayload {
+  direccione: Direcciones
+}
+
+input deleteDireccioneInput {
+  where: InputID
+}
+
+type deleteDireccionePayload {
+  direccione: Direcciones
+}
+
+type Empresas {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  nombre: String
+  descripcion: String
+  pagina_web: String
+  ruc: Int
+  telefono: Int
+  avatar: UploadFile
+  direccion: Direcciones
+  configuracion: Configuracion
+  estado: Boolean
+  user: UsersPermissionsUser
+  comisionBmas: Float
+  aceptar_pedidos: Boolean
+  totalkms: Float
+  published_at: DateTime
+  productos(sort: String, limit: Int, start: Int, where: JSON): [Productos]
+  categorias(sort: String, limit: Int, start: Int, where: JSON): [Categorias]
+  sucursales(sort: String, limit: Int, start: Int, where: JSON): [Sucursales]
+  horario_empresas(sort: String, limit: Int, start: Int, where: JSON): [HorarioEmpresas]
+  calificacion_empresas(sort: String, limit: Int, start: Int, where: JSON): [CalificacionEmpresas]
+}
+
+type EmpresasConnection {
+  values: [Empresas]
+  groupBy: EmpresasGroupBy
+  aggregate: EmpresasAggregator
+}
+
+type EmpresasAggregator {
+  count: Int
+  totalCount: Int
+  sum: EmpresasAggregatorSum
+  avg: EmpresasAggregatorAvg
+  min: EmpresasAggregatorMin
+  max: EmpresasAggregatorMax
+}
+
+type EmpresasAggregatorSum {
+  ruc: Float
+  telefono: Float
+  comisionBmas: Float
+  totalkms: Float
+}
+
+type EmpresasAggregatorAvg {
+  ruc: Float
+  telefono: Float
+  comisionBmas: Float
+  totalkms: Float
+}
+
+type EmpresasAggregatorMin {
+  ruc: Float
+  telefono: Float
+  comisionBmas: Float
+  totalkms: Float
+}
+
+type EmpresasAggregatorMax {
+  ruc: Float
+  telefono: Float
+  comisionBmas: Float
+  totalkms: Float
+}
+
+type EmpresasGroupBy {
+  id: [EmpresasConnectionId]
+  _id: [EmpresasConnection_id]
+  createdAt: [EmpresasConnectionCreatedAt]
+  updatedAt: [EmpresasConnectionUpdatedAt]
+  nombre: [EmpresasConnectionNombre]
+  descripcion: [EmpresasConnectionDescripcion]
+  pagina_web: [EmpresasConnectionPagina_web]
+  ruc: [EmpresasConnectionRuc]
+  telefono: [EmpresasConnectionTelefono]
+  avatar: [EmpresasConnectionAvatar]
+  direccion: [EmpresasConnectionDireccion]
+  configuracion: [EmpresasConnectionConfiguracion]
+  estado: [EmpresasConnectionEstado]
+  user: [EmpresasConnectionUser]
+  comisionBmas: [EmpresasConnectionComisionBmas]
+  aceptar_pedidos: [EmpresasConnectionAceptar_pedidos]
+  totalkms: [EmpresasConnectionTotalkms]
+  published_at: [EmpresasConnectionPublished_at]
+}
+
+type EmpresasConnectionId {
+  key: ID
+  connection: EmpresasConnection
+}
+
+type EmpresasConnection_id {
+  key: ID
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionCreatedAt {
+  key: DateTime
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionUpdatedAt {
+  key: DateTime
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionNombre {
+  key: String
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionDescripcion {
+  key: String
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionPagina_web {
+  key: String
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionRuc {
+  key: Int
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionTelefono {
+  key: Int
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionAvatar {
+  key: ID
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionDireccion {
+  key: ID
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionConfiguracion {
+  key: ID
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionEstado {
+  key: Boolean
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionUser {
+  key: ID
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionComisionBmas {
+  key: Float
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionAceptar_pedidos {
+  key: Boolean
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionTotalkms {
+  key: Float
+  connection: EmpresasConnection
+}
+
+type EmpresasConnectionPublished_at {
+  key: DateTime
+  connection: EmpresasConnection
+}
+
+input EmpresaInput {
+  nombre: String
+  descripcion: String
+  pagina_web: String
+  ruc: Int
+  telefono: Int
+  avatar: ID
+  direccion: ID
+  productos: [ID]
+  categorias: [ID]
+  sucursales: [ID]
+  configuracion: ID
+  estado: Boolean
+  user: ID
+  comisionBmas: Float
+  horario_empresas: [ID]
+  calificacion_empresas: [ID]
+  aceptar_pedidos: Boolean
+  totalkms: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editEmpresaInput {
+  nombre: String
+  descripcion: String
+  pagina_web: String
+  ruc: Int
+  telefono: Int
+  avatar: ID
+  direccion: ID
+  productos: [ID]
+  categorias: [ID]
+  sucursales: [ID]
+  configuracion: ID
+  estado: Boolean
+  user: ID
+  comisionBmas: Float
+  horario_empresas: [ID]
+  calificacion_empresas: [ID]
+  aceptar_pedidos: Boolean
+  totalkms: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createEmpresaInput {
+  data: EmpresaInput
+}
+
+type createEmpresaPayload {
+  empresa: Empresas
+}
+
+input updateEmpresaInput {
+  where: InputID
+  data: editEmpresaInput
+}
+
+type updateEmpresaPayload {
+  empresa: Empresas
+}
+
+input deleteEmpresaInput {
+  where: InputID
+}
+
+type deleteEmpresaPayload {
+  empresa: Empresas
+}
+
+type Entrega {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  usuario: UsersPermissionsUser
+  cliente: String
+  fecha: Date
+  hora: Time
+  telefono: String
+  origen: String
+  destino: String
+  cantidadkms: Float
+  valorkm: Float
+  costokms: Float
+  kmadicional: Float
+  observacion: JSON
+  empresa: Empresas
+  bmasValorkm: Float
+  bmasCalculokms: Float
+  valorTotalEntrega: Float
+  published_at: DateTime
+}
+
+type EntregaConnection {
+  values: [Entrega]
+  groupBy: EntregaGroupBy
+  aggregate: EntregaAggregator
+}
+
+type EntregaAggregator {
+  count: Int
+  totalCount: Int
+  sum: EntregaAggregatorSum
+  avg: EntregaAggregatorAvg
+  min: EntregaAggregatorMin
+  max: EntregaAggregatorMax
+}
+
+type EntregaAggregatorSum {
+  cantidadkms: Float
+  valorkm: Float
+  costokms: Float
+  kmadicional: Float
+  bmasValorkm: Float
+  bmasCalculokms: Float
+  valorTotalEntrega: Float
+}
+
+type EntregaAggregatorAvg {
+  cantidadkms: Float
+  valorkm: Float
+  costokms: Float
+  kmadicional: Float
+  bmasValorkm: Float
+  bmasCalculokms: Float
+  valorTotalEntrega: Float
+}
+
+type EntregaAggregatorMin {
+  cantidadkms: Float
+  valorkm: Float
+  costokms: Float
+  kmadicional: Float
+  bmasValorkm: Float
+  bmasCalculokms: Float
+  valorTotalEntrega: Float
+}
+
+type EntregaAggregatorMax {
+  cantidadkms: Float
+  valorkm: Float
+  costokms: Float
+  kmadicional: Float
+  bmasValorkm: Float
+  bmasCalculokms: Float
+  valorTotalEntrega: Float
+}
+
+type EntregaGroupBy {
+  id: [EntregaConnectionId]
+  _id: [EntregaConnection_id]
+  createdAt: [EntregaConnectionCreatedAt]
+  updatedAt: [EntregaConnectionUpdatedAt]
+  usuario: [EntregaConnectionUsuario]
+  cliente: [EntregaConnectionCliente]
+  fecha: [EntregaConnectionFecha]
+  hora: [EntregaConnectionHora]
+  telefono: [EntregaConnectionTelefono]
+  origen: [EntregaConnectionOrigen]
+  destino: [EntregaConnectionDestino]
+  cantidadkms: [EntregaConnectionCantidadkms]
+  valorkm: [EntregaConnectionValorkm]
+  costokms: [EntregaConnectionCostokms]
+  kmadicional: [EntregaConnectionKmadicional]
+  observacion: [EntregaConnectionObservacion]
+  empresa: [EntregaConnectionEmpresa]
+  bmasValorkm: [EntregaConnectionBmasValorkm]
+  bmasCalculokms: [EntregaConnectionBmasCalculokms]
+  valorTotalEntrega: [EntregaConnectionValorTotalEntrega]
+  published_at: [EntregaConnectionPublished_at]
+}
+
+type EntregaConnectionId {
+  key: ID
+  connection: EntregaConnection
+}
+
+type EntregaConnection_id {
+  key: ID
+  connection: EntregaConnection
+}
+
+type EntregaConnectionCreatedAt {
+  key: DateTime
+  connection: EntregaConnection
+}
+
+type EntregaConnectionUpdatedAt {
+  key: DateTime
+  connection: EntregaConnection
+}
+
+type EntregaConnectionUsuario {
+  key: ID
+  connection: EntregaConnection
+}
+
+type EntregaConnectionCliente {
+  key: String
+  connection: EntregaConnection
+}
+
+type EntregaConnectionFecha {
+  key: ID
+  connection: EntregaConnection
+}
+
+type EntregaConnectionHora {
+  key: ID
+  connection: EntregaConnection
+}
+
+type EntregaConnectionTelefono {
+  key: String
+  connection: EntregaConnection
+}
+
+type EntregaConnectionOrigen {
+  key: String
+  connection: EntregaConnection
+}
+
+type EntregaConnectionDestino {
+  key: String
+  connection: EntregaConnection
+}
+
+type EntregaConnectionCantidadkms {
+  key: Float
+  connection: EntregaConnection
+}
+
+type EntregaConnectionValorkm {
+  key: Float
+  connection: EntregaConnection
+}
+
+type EntregaConnectionCostokms {
+  key: Float
+  connection: EntregaConnection
+}
+
+type EntregaConnectionKmadicional {
+  key: Float
+  connection: EntregaConnection
+}
+
+type EntregaConnectionObservacion {
+  key: JSON
+  connection: EntregaConnection
+}
+
+type EntregaConnectionEmpresa {
+  key: ID
+  connection: EntregaConnection
+}
+
+type EntregaConnectionBmasValorkm {
+  key: Float
+  connection: EntregaConnection
+}
+
+type EntregaConnectionBmasCalculokms {
+  key: Float
+  connection: EntregaConnection
+}
+
+type EntregaConnectionValorTotalEntrega {
+  key: Float
+  connection: EntregaConnection
+}
+
+type EntregaConnectionPublished_at {
+  key: DateTime
+  connection: EntregaConnection
+}
+
+input EntregaInput {
+  usuario: ID
+  cliente: String
+  fecha: Date
+  hora: Time
+  telefono: String
+  origen: String
+  destino: String
+  cantidadkms: Float
+  valorkm: Float
+  costokms: Float
+  kmadicional: Float
+  observacion: JSON
+  empresa: ID
+  bmasValorkm: Float
+  bmasCalculokms: Float
+  valorTotalEntrega: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editEntregaInput {
+  usuario: ID
+  cliente: String
+  fecha: Date
+  hora: Time
+  telefono: String
+  origen: String
+  destino: String
+  cantidadkms: Float
+  valorkm: Float
+  costokms: Float
+  kmadicional: Float
+  observacion: JSON
+  empresa: ID
+  bmasValorkm: Float
+  bmasCalculokms: Float
+  valorTotalEntrega: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createEntregaInput {
+  data: EntregaInput
+}
+
+type createEntregaPayload {
+  entrega: Entrega
+}
+
+input updateEntregaInput {
+  where: InputID
+  data: editEntregaInput
+}
+
+type updateEntregaPayload {
+  entrega: Entrega
+}
+
+input deleteEntregaInput {
+  where: InputID
+}
+
+type deleteEntregaPayload {
+  entrega: Entrega
+}
+
+type Errores {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  usuario: UsersPermissionsUser
+  error: String
+  published_at: DateTime
+}
+
+type ErroresConnection {
+  values: [Errores]
+  groupBy: ErroresGroupBy
+  aggregate: ErroresAggregator
+}
+
+type ErroresAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ErroresGroupBy {
+  id: [ErroresConnectionId]
+  _id: [ErroresConnection_id]
+  createdAt: [ErroresConnectionCreatedAt]
+  updatedAt: [ErroresConnectionUpdatedAt]
+  usuario: [ErroresConnectionUsuario]
+  error: [ErroresConnectionError]
+  published_at: [ErroresConnectionPublished_at]
+}
+
+type ErroresConnectionId {
+  key: ID
+  connection: ErroresConnection
+}
+
+type ErroresConnection_id {
+  key: ID
+  connection: ErroresConnection
+}
+
+type ErroresConnectionCreatedAt {
+  key: DateTime
+  connection: ErroresConnection
+}
+
+type ErroresConnectionUpdatedAt {
+  key: DateTime
+  connection: ErroresConnection
+}
+
+type ErroresConnectionUsuario {
+  key: ID
+  connection: ErroresConnection
+}
+
+type ErroresConnectionError {
+  key: String
+  connection: ErroresConnection
+}
+
+type ErroresConnectionPublished_at {
+  key: DateTime
+  connection: ErroresConnection
+}
+
+input ErroreInput {
+  usuario: ID
+  error: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editErroreInput {
+  usuario: ID
+  error: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createErroreInput {
+  data: ErroreInput
+}
+
+type createErrorePayload {
+  errore: Errores
+}
+
+input updateErroreInput {
+  where: InputID
+  data: editErroreInput
+}
+
+type updateErrorePayload {
+  errore: Errores
+}
+
+input deleteErroreInput {
+  where: InputID
+}
+
+type deleteErrorePayload {
+  errore: Errores
+}
+
+type FacturacionUsuarios {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  nombres: String
+  direccion: String
+  correo: String
+  estado: Boolean
+  usuario: UsersPermissionsUser
+  cedula: Long
+  published_at: DateTime
+}
+
+type FacturacionUsuariosConnection {
+  values: [FacturacionUsuarios]
+  groupBy: FacturacionUsuariosGroupBy
+  aggregate: FacturacionUsuariosAggregator
+}
+
+type FacturacionUsuariosAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type FacturacionUsuariosGroupBy {
+  id: [FacturacionUsuariosConnectionId]
+  _id: [FacturacionUsuariosConnection_id]
+  createdAt: [FacturacionUsuariosConnectionCreatedAt]
+  updatedAt: [FacturacionUsuariosConnectionUpdatedAt]
+  nombres: [FacturacionUsuariosConnectionNombres]
+  direccion: [FacturacionUsuariosConnectionDireccion]
+  correo: [FacturacionUsuariosConnectionCorreo]
+  estado: [FacturacionUsuariosConnectionEstado]
+  usuario: [FacturacionUsuariosConnectionUsuario]
+  cedula: [FacturacionUsuariosConnectionCedula]
+  published_at: [FacturacionUsuariosConnectionPublished_at]
+}
+
+type FacturacionUsuariosConnectionId {
+  key: ID
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnection_id {
+  key: ID
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionCreatedAt {
+  key: DateTime
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionUpdatedAt {
+  key: DateTime
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionNombres {
+  key: String
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionDireccion {
+  key: String
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionCorreo {
+  key: String
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionEstado {
+  key: Boolean
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionUsuario {
+  key: ID
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionCedula {
+  key: ID
+  connection: FacturacionUsuariosConnection
+}
+
+type FacturacionUsuariosConnectionPublished_at {
+  key: DateTime
+  connection: FacturacionUsuariosConnection
+}
+
+input FacturacionUsuarioInput {
+  nombres: String
+  direccion: String
+  correo: String
+  estado: Boolean
+  usuario: ID
+  cedula: Long
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editFacturacionUsuarioInput {
+  nombres: String
+  direccion: String
+  correo: String
+  estado: Boolean
+  usuario: ID
+  cedula: Long
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createFacturacionUsuarioInput {
+  data: FacturacionUsuarioInput
+}
+
+type createFacturacionUsuarioPayload {
+  facturacionUsuario: FacturacionUsuarios
+}
+
+input updateFacturacionUsuarioInput {
+  where: InputID
+  data: editFacturacionUsuarioInput
+}
+
+type updateFacturacionUsuarioPayload {
+  facturacionUsuario: FacturacionUsuarios
+}
+
+input deleteFacturacionUsuarioInput {
+  where: InputID
+}
+
+type deleteFacturacionUsuarioPayload {
+  facturacionUsuario: FacturacionUsuarios
+}
+
+type HorarioEmpresas {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  empresa: Empresas
+  hora_inicio: Time
+  hora_final: Time
+  published_at: DateTime
+  dias(sort: String, limit: Int, start: Int, where: JSON): [Dias]
+}
+
+type HorarioEmpresasConnection {
+  values: [HorarioEmpresas]
+  groupBy: HorarioEmpresasGroupBy
+  aggregate: HorarioEmpresasAggregator
+}
+
+type HorarioEmpresasAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type HorarioEmpresasGroupBy {
+  id: [HorarioEmpresasConnectionId]
+  _id: [HorarioEmpresasConnection_id]
+  createdAt: [HorarioEmpresasConnectionCreatedAt]
+  updatedAt: [HorarioEmpresasConnectionUpdatedAt]
+  empresa: [HorarioEmpresasConnectionEmpresa]
+  hora_inicio: [HorarioEmpresasConnectionHora_inicio]
+  hora_final: [HorarioEmpresasConnectionHora_final]
+  published_at: [HorarioEmpresasConnectionPublished_at]
+}
+
+type HorarioEmpresasConnectionId {
+  key: ID
+  connection: HorarioEmpresasConnection
+}
+
+type HorarioEmpresasConnection_id {
+  key: ID
+  connection: HorarioEmpresasConnection
+}
+
+type HorarioEmpresasConnectionCreatedAt {
+  key: DateTime
+  connection: HorarioEmpresasConnection
+}
+
+type HorarioEmpresasConnectionUpdatedAt {
+  key: DateTime
+  connection: HorarioEmpresasConnection
+}
+
+type HorarioEmpresasConnectionEmpresa {
+  key: ID
+  connection: HorarioEmpresasConnection
+}
+
+type HorarioEmpresasConnectionHora_inicio {
+  key: ID
+  connection: HorarioEmpresasConnection
+}
+
+type HorarioEmpresasConnectionHora_final {
+  key: ID
+  connection: HorarioEmpresasConnection
+}
+
+type HorarioEmpresasConnectionPublished_at {
+  key: DateTime
+  connection: HorarioEmpresasConnection
+}
+
+input HorarioEmpresaInput {
+  empresa: ID
+  hora_inicio: Time
+  hora_final: Time
+  dias: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editHorarioEmpresaInput {
+  empresa: ID
+  hora_inicio: Time
+  hora_final: Time
+  dias: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createHorarioEmpresaInput {
+  data: HorarioEmpresaInput
+}
+
+type createHorarioEmpresaPayload {
+  horarioEmpresa: HorarioEmpresas
+}
+
+input updateHorarioEmpresaInput {
+  where: InputID
+  data: editHorarioEmpresaInput
+}
+
+type updateHorarioEmpresaPayload {
+  horarioEmpresa: HorarioEmpresas
+}
+
+input deleteHorarioEmpresaInput {
+  where: InputID
+}
+
+type deleteHorarioEmpresaPayload {
+  horarioEmpresa: HorarioEmpresas
+}
+
+type Horarios {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  porcentaje: Int
+  h_inicio: Time
+  h_final: Time
+  nombre: String
+  published_at: DateTime
+}
+
+type HorariosConnection {
+  values: [Horarios]
+  groupBy: HorariosGroupBy
+  aggregate: HorariosAggregator
+}
+
+type HorariosAggregator {
+  count: Int
+  totalCount: Int
+  sum: HorariosAggregatorSum
+  avg: HorariosAggregatorAvg
+  min: HorariosAggregatorMin
+  max: HorariosAggregatorMax
+}
+
+type HorariosAggregatorSum {
+  porcentaje: Float
+}
+
+type HorariosAggregatorAvg {
+  porcentaje: Float
+}
+
+type HorariosAggregatorMin {
+  porcentaje: Float
+}
+
+type HorariosAggregatorMax {
+  porcentaje: Float
+}
+
+type HorariosGroupBy {
+  id: [HorariosConnectionId]
+  _id: [HorariosConnection_id]
+  createdAt: [HorariosConnectionCreatedAt]
+  updatedAt: [HorariosConnectionUpdatedAt]
+  porcentaje: [HorariosConnectionPorcentaje]
+  h_inicio: [HorariosConnectionH_inicio]
+  h_final: [HorariosConnectionH_final]
+  nombre: [HorariosConnectionNombre]
+  published_at: [HorariosConnectionPublished_at]
+}
+
+type HorariosConnectionId {
+  key: ID
+  connection: HorariosConnection
+}
+
+type HorariosConnection_id {
+  key: ID
+  connection: HorariosConnection
+}
+
+type HorariosConnectionCreatedAt {
+  key: DateTime
+  connection: HorariosConnection
+}
+
+type HorariosConnectionUpdatedAt {
+  key: DateTime
+  connection: HorariosConnection
+}
+
+type HorariosConnectionPorcentaje {
+  key: Int
+  connection: HorariosConnection
+}
+
+type HorariosConnectionH_inicio {
+  key: ID
+  connection: HorariosConnection
+}
+
+type HorariosConnectionH_final {
+  key: ID
+  connection: HorariosConnection
+}
+
+type HorariosConnectionNombre {
+  key: String
+  connection: HorariosConnection
+}
+
+type HorariosConnectionPublished_at {
+  key: DateTime
+  connection: HorariosConnection
+}
+
+input HorarioInput {
+  porcentaje: Int
+  h_inicio: Time
+  h_final: Time
+  nombre: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editHorarioInput {
+  porcentaje: Int
+  h_inicio: Time
+  h_final: Time
+  nombre: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createHorarioInput {
+  data: HorarioInput
+}
+
+type createHorarioPayload {
+  horario: Horarios
+}
+
+input updateHorarioInput {
+  where: InputID
+  data: editHorarioInput
+}
+
+type updateHorarioPayload {
+  horario: Horarios
+}
+
+input deleteHorarioInput {
+  where: InputID
+}
+
+type deleteHorarioPayload {
+  horario: Horarios
+}
+
+type Mensajes {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  orden: Ordenes
+  usuario: UsersPermissionsUser
+  estado: Boolean
+  mensaje: String
+  published_at: DateTime
+}
+
+type MensajesConnection {
+  values: [Mensajes]
+  groupBy: MensajesGroupBy
+  aggregate: MensajesAggregator
+}
+
+type MensajesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type MensajesGroupBy {
+  id: [MensajesConnectionId]
+  _id: [MensajesConnection_id]
+  createdAt: [MensajesConnectionCreatedAt]
+  updatedAt: [MensajesConnectionUpdatedAt]
+  orden: [MensajesConnectionOrden]
+  usuario: [MensajesConnectionUsuario]
+  estado: [MensajesConnectionEstado]
+  mensaje: [MensajesConnectionMensaje]
+  published_at: [MensajesConnectionPublished_at]
+}
+
+type MensajesConnectionId {
+  key: ID
+  connection: MensajesConnection
+}
+
+type MensajesConnection_id {
+  key: ID
+  connection: MensajesConnection
+}
+
+type MensajesConnectionCreatedAt {
+  key: DateTime
+  connection: MensajesConnection
+}
+
+type MensajesConnectionUpdatedAt {
+  key: DateTime
+  connection: MensajesConnection
+}
+
+type MensajesConnectionOrden {
+  key: ID
+  connection: MensajesConnection
+}
+
+type MensajesConnectionUsuario {
+  key: ID
+  connection: MensajesConnection
+}
+
+type MensajesConnectionEstado {
+  key: Boolean
+  connection: MensajesConnection
+}
+
+type MensajesConnectionMensaje {
+  key: String
+  connection: MensajesConnection
+}
+
+type MensajesConnectionPublished_at {
+  key: DateTime
+  connection: MensajesConnection
+}
+
+input MensajeInput {
+  orden: ID
+  usuario: ID
+  estado: Boolean
+  mensaje: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editMensajeInput {
+  orden: ID
+  usuario: ID
+  estado: Boolean
+  mensaje: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createMensajeInput {
+  data: MensajeInput
+}
+
+type createMensajePayload {
+  mensaje: Mensajes
+}
+
+input updateMensajeInput {
+  where: InputID
+  data: editMensajeInput
+}
+
+type updateMensajePayload {
+  mensaje: Mensajes
+}
+
+input deleteMensajeInput {
+  where: InputID
+}
+
+type deleteMensajePayload {
+  mensaje: Mensajes
+}
+
+type MenuEmpresas {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  orden: Int
+  url: String
+  name: String
+  icon: String
+  perfil: Perfiles
+  published_at: DateTime
+}
+
+type MenuEmpresasConnection {
+  values: [MenuEmpresas]
+  groupBy: MenuEmpresasGroupBy
+  aggregate: MenuEmpresasAggregator
+}
+
+type MenuEmpresasAggregator {
+  count: Int
+  totalCount: Int
+  sum: MenuEmpresasAggregatorSum
+  avg: MenuEmpresasAggregatorAvg
+  min: MenuEmpresasAggregatorMin
+  max: MenuEmpresasAggregatorMax
+}
+
+type MenuEmpresasAggregatorSum {
+  orden: Float
+}
+
+type MenuEmpresasAggregatorAvg {
+  orden: Float
+}
+
+type MenuEmpresasAggregatorMin {
+  orden: Float
+}
+
+type MenuEmpresasAggregatorMax {
+  orden: Float
+}
+
+type MenuEmpresasGroupBy {
+  id: [MenuEmpresasConnectionId]
+  _id: [MenuEmpresasConnection_id]
+  createdAt: [MenuEmpresasConnectionCreatedAt]
+  updatedAt: [MenuEmpresasConnectionUpdatedAt]
+  orden: [MenuEmpresasConnectionOrden]
+  url: [MenuEmpresasConnectionUrl]
+  name: [MenuEmpresasConnectionName]
+  icon: [MenuEmpresasConnectionIcon]
+  perfil: [MenuEmpresasConnectionPerfil]
+  published_at: [MenuEmpresasConnectionPublished_at]
+}
+
+type MenuEmpresasConnectionId {
+  key: ID
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnection_id {
+  key: ID
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnectionCreatedAt {
+  key: DateTime
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnectionUpdatedAt {
+  key: DateTime
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnectionOrden {
+  key: Int
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnectionUrl {
+  key: String
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnectionName {
+  key: String
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnectionIcon {
+  key: String
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnectionPerfil {
+  key: ID
+  connection: MenuEmpresasConnection
+}
+
+type MenuEmpresasConnectionPublished_at {
+  key: DateTime
+  connection: MenuEmpresasConnection
+}
+
+input MenuEmpresaInput {
+  orden: Int
+  url: String
+  name: String
+  icon: String
+  perfil: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editMenuEmpresaInput {
+  orden: Int
+  url: String
+  name: String
+  icon: String
+  perfil: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createMenuEmpresaInput {
+  data: MenuEmpresaInput
+}
+
+type createMenuEmpresaPayload {
+  menuEmpresa: MenuEmpresas
+}
+
+input updateMenuEmpresaInput {
+  where: InputID
+  data: editMenuEmpresaInput
+}
+
+type updateMenuEmpresaPayload {
+  menuEmpresa: MenuEmpresas
+}
+
+input deleteMenuEmpresaInput {
+  where: InputID
+}
+
+type deleteMenuEmpresaPayload {
+  menuEmpresa: MenuEmpresas
+}
+
+type OpcionesProductos {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  nombre: String
+  descripcion: String
+  cantidad: Int
+  precio: Float
+  estado: Boolean
+  published_at: DateTime
+}
+
+type OpcionesProductosConnection {
+  values: [OpcionesProductos]
+  groupBy: OpcionesProductosGroupBy
+  aggregate: OpcionesProductosAggregator
+}
+
+type OpcionesProductosAggregator {
+  count: Int
+  totalCount: Int
+  sum: OpcionesProductosAggregatorSum
+  avg: OpcionesProductosAggregatorAvg
+  min: OpcionesProductosAggregatorMin
+  max: OpcionesProductosAggregatorMax
+}
+
+type OpcionesProductosAggregatorSum {
+  cantidad: Float
+  precio: Float
+}
+
+type OpcionesProductosAggregatorAvg {
+  cantidad: Float
+  precio: Float
+}
+
+type OpcionesProductosAggregatorMin {
+  cantidad: Float
+  precio: Float
+}
+
+type OpcionesProductosAggregatorMax {
+  cantidad: Float
+  precio: Float
+}
+
+type OpcionesProductosGroupBy {
+  id: [OpcionesProductosConnectionId]
+  _id: [OpcionesProductosConnection_id]
+  createdAt: [OpcionesProductosConnectionCreatedAt]
+  updatedAt: [OpcionesProductosConnectionUpdatedAt]
+  nombre: [OpcionesProductosConnectionNombre]
+  descripcion: [OpcionesProductosConnectionDescripcion]
+  cantidad: [OpcionesProductosConnectionCantidad]
+  precio: [OpcionesProductosConnectionPrecio]
+  estado: [OpcionesProductosConnectionEstado]
+  published_at: [OpcionesProductosConnectionPublished_at]
+}
+
+type OpcionesProductosConnectionId {
+  key: ID
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnection_id {
+  key: ID
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnectionCreatedAt {
+  key: DateTime
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnectionUpdatedAt {
+  key: DateTime
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnectionNombre {
+  key: String
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnectionDescripcion {
+  key: String
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnectionCantidad {
+  key: Int
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnectionPrecio {
+  key: Float
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnectionEstado {
+  key: Boolean
+  connection: OpcionesProductosConnection
+}
+
+type OpcionesProductosConnectionPublished_at {
+  key: DateTime
+  connection: OpcionesProductosConnection
+}
+
+input OpcionesProductoInput {
+  nombre: String
+  descripcion: String
+  cantidad: Int
+  precio: Float
+  estado: Boolean
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editOpcionesProductoInput {
+  nombre: String
+  descripcion: String
+  cantidad: Int
+  precio: Float
+  estado: Boolean
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createOpcionesProductoInput {
+  data: OpcionesProductoInput
+}
+
+type createOpcionesProductoPayload {
+  opcionesProducto: OpcionesProductos
+}
+
+input updateOpcionesProductoInput {
+  where: InputID
+  data: editOpcionesProductoInput
+}
+
+type updateOpcionesProductoPayload {
+  opcionesProducto: OpcionesProductos
+}
+
+input deleteOpcionesProductoInput {
+  where: InputID
+}
+
+type deleteOpcionesProductoPayload {
+  opcionesProducto: OpcionesProductos
+}
+
+type OrdenesProductos {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  orden: Ordenes
+  producto: Productos
+  cantidad: Int!
+  published_at: DateTime
+}
+
+type OrdenesProductosConnection {
+  values: [OrdenesProductos]
+  groupBy: OrdenesProductosGroupBy
+  aggregate: OrdenesProductosAggregator
+}
+
+type OrdenesProductosAggregator {
+  count: Int
+  totalCount: Int
+  sum: OrdenesProductosAggregatorSum
+  avg: OrdenesProductosAggregatorAvg
+  min: OrdenesProductosAggregatorMin
+  max: OrdenesProductosAggregatorMax
+}
+
+type OrdenesProductosAggregatorSum {
+  cantidad: Float
+}
+
+type OrdenesProductosAggregatorAvg {
+  cantidad: Float
+}
+
+type OrdenesProductosAggregatorMin {
+  cantidad: Float
+}
+
+type OrdenesProductosAggregatorMax {
+  cantidad: Float
+}
+
+type OrdenesProductosGroupBy {
+  id: [OrdenesProductosConnectionId]
+  _id: [OrdenesProductosConnection_id]
+  createdAt: [OrdenesProductosConnectionCreatedAt]
+  updatedAt: [OrdenesProductosConnectionUpdatedAt]
+  orden: [OrdenesProductosConnectionOrden]
+  producto: [OrdenesProductosConnectionProducto]
+  cantidad: [OrdenesProductosConnectionCantidad]
+  published_at: [OrdenesProductosConnectionPublished_at]
+}
+
+type OrdenesProductosConnectionId {
+  key: ID
+  connection: OrdenesProductosConnection
+}
+
+type OrdenesProductosConnection_id {
+  key: ID
+  connection: OrdenesProductosConnection
+}
+
+type OrdenesProductosConnectionCreatedAt {
+  key: DateTime
+  connection: OrdenesProductosConnection
+}
+
+type OrdenesProductosConnectionUpdatedAt {
+  key: DateTime
+  connection: OrdenesProductosConnection
+}
+
+type OrdenesProductosConnectionOrden {
+  key: ID
+  connection: OrdenesProductosConnection
+}
+
+type OrdenesProductosConnectionProducto {
+  key: ID
+  connection: OrdenesProductosConnection
+}
+
+type OrdenesProductosConnectionCantidad {
+  key: Int
+  connection: OrdenesProductosConnection
+}
+
+type OrdenesProductosConnectionPublished_at {
+  key: DateTime
+  connection: OrdenesProductosConnection
+}
+
+input OrdenesProductoInput {
+  orden: ID
+  producto: ID
+  cantidad: Int
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editOrdenesProductoInput {
+  orden: ID
+  producto: ID
+  cantidad: Int
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createOrdenesProductoInput {
+  data: OrdenesProductoInput
+}
+
+type createOrdenesProductoPayload {
+  ordenesProducto: OrdenesProductos
+}
+
+input updateOrdenesProductoInput {
+  where: InputID
+  data: editOrdenesProductoInput
+}
+
+type updateOrdenesProductoPayload {
+  ordenesProducto: OrdenesProductos
+}
+
+input deleteOrdenesProductoInput {
+  where: InputID
+}
+
+type deleteOrdenesProductoPayload {
+  ordenesProducto: OrdenesProductos
+}
+
+type Ordenes {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  usuario: UsersPermissionsUser
+  estado: Boolean
+  facturacion_usuario: FacturacionUsuarios
+  direcciones_usuario: DireccionesUsuarios
+  pagado: Boolean
+  payphone: Payphone
+  empresa: Empresas
+  entregaEmpresa: Boolean
+  entregaScooter: Boolean
+  entregaFinalizado: Boolean
+  pagoEfectivo: Boolean
+  sucursal: Sucursales
+  repartidor: UsersPermissionsUser
+  distancia_empresa: String
+  duracion_empresa: String
+  distancia_cliente: String
+  duracion_cliente: String
+  total: Float
+  subtotal_delivery: Float
+  total_delivery: Float
+  km_delivery: Float
+  configuracion: JSON
+  polyline: String
+  porcentaje: Float
+  comisionBmas: Float
+  id_orden_contifico: String
+  pago_recibido: Boolean
+  acepta_empresa: DateTime
+  acepta_repartidor: DateTime
+  recoge_repartidor: DateTime
+  entrega_repartidor: DateTime
+  efectivo_cliente: Float
+  published_at: DateTime
+  ordenes_productos(sort: String, limit: Int, start: Int, where: JSON): [OrdenesProductos]
+}
+
+type OrdenesConnection {
+  values: [Ordenes]
+  groupBy: OrdenesGroupBy
+  aggregate: OrdenesAggregator
+}
+
+type OrdenesAggregator {
+  count: Int
+  totalCount: Int
+  sum: OrdenesAggregatorSum
+  avg: OrdenesAggregatorAvg
+  min: OrdenesAggregatorMin
+  max: OrdenesAggregatorMax
+}
+
+type OrdenesAggregatorSum {
+  total: Float
+  subtotal_delivery: Float
+  total_delivery: Float
+  km_delivery: Float
+  porcentaje: Float
+  comisionBmas: Float
+  efectivo_cliente: Float
+}
+
+type OrdenesAggregatorAvg {
+  total: Float
+  subtotal_delivery: Float
+  total_delivery: Float
+  km_delivery: Float
+  porcentaje: Float
+  comisionBmas: Float
+  efectivo_cliente: Float
+}
+
+type OrdenesAggregatorMin {
+  total: Float
+  subtotal_delivery: Float
+  total_delivery: Float
+  km_delivery: Float
+  porcentaje: Float
+  comisionBmas: Float
+  efectivo_cliente: Float
+}
+
+type OrdenesAggregatorMax {
+  total: Float
+  subtotal_delivery: Float
+  total_delivery: Float
+  km_delivery: Float
+  porcentaje: Float
+  comisionBmas: Float
+  efectivo_cliente: Float
+}
+
+type OrdenesGroupBy {
+  id: [OrdenesConnectionId]
+  _id: [OrdenesConnection_id]
+  createdAt: [OrdenesConnectionCreatedAt]
+  updatedAt: [OrdenesConnectionUpdatedAt]
+  usuario: [OrdenesConnectionUsuario]
+  estado: [OrdenesConnectionEstado]
+  facturacion_usuario: [OrdenesConnectionFacturacion_usuario]
+  direcciones_usuario: [OrdenesConnectionDirecciones_usuario]
+  pagado: [OrdenesConnectionPagado]
+  payphone: [OrdenesConnectionPayphone]
+  empresa: [OrdenesConnectionEmpresa]
+  entregaEmpresa: [OrdenesConnectionEntregaEmpresa]
+  entregaScooter: [OrdenesConnectionEntregaScooter]
+  entregaFinalizado: [OrdenesConnectionEntregaFinalizado]
+  pagoEfectivo: [OrdenesConnectionPagoEfectivo]
+  sucursal: [OrdenesConnectionSucursal]
+  repartidor: [OrdenesConnectionRepartidor]
+  distancia_empresa: [OrdenesConnectionDistancia_empresa]
+  duracion_empresa: [OrdenesConnectionDuracion_empresa]
+  distancia_cliente: [OrdenesConnectionDistancia_cliente]
+  duracion_cliente: [OrdenesConnectionDuracion_cliente]
+  total: [OrdenesConnectionTotal]
+  subtotal_delivery: [OrdenesConnectionSubtotal_delivery]
+  total_delivery: [OrdenesConnectionTotal_delivery]
+  km_delivery: [OrdenesConnectionKm_delivery]
+  configuracion: [OrdenesConnectionConfiguracion]
+  polyline: [OrdenesConnectionPolyline]
+  porcentaje: [OrdenesConnectionPorcentaje]
+  comisionBmas: [OrdenesConnectionComisionBmas]
+  id_orden_contifico: [OrdenesConnectionId_orden_contifico]
+  pago_recibido: [OrdenesConnectionPago_recibido]
+  acepta_empresa: [OrdenesConnectionAcepta_empresa]
+  acepta_repartidor: [OrdenesConnectionAcepta_repartidor]
+  recoge_repartidor: [OrdenesConnectionRecoge_repartidor]
+  entrega_repartidor: [OrdenesConnectionEntrega_repartidor]
+  efectivo_cliente: [OrdenesConnectionEfectivo_cliente]
+  published_at: [OrdenesConnectionPublished_at]
+}
+
+type OrdenesConnectionId {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnection_id {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionCreatedAt {
+  key: DateTime
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionUpdatedAt {
+  key: DateTime
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionUsuario {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionEstado {
+  key: Boolean
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionFacturacion_usuario {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionDirecciones_usuario {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionPagado {
+  key: Boolean
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionPayphone {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionEmpresa {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionEntregaEmpresa {
+  key: Boolean
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionEntregaScooter {
+  key: Boolean
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionEntregaFinalizado {
+  key: Boolean
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionPagoEfectivo {
+  key: Boolean
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionSucursal {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionRepartidor {
+  key: ID
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionDistancia_empresa {
+  key: String
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionDuracion_empresa {
+  key: String
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionDistancia_cliente {
+  key: String
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionDuracion_cliente {
+  key: String
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionTotal {
+  key: Float
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionSubtotal_delivery {
+  key: Float
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionTotal_delivery {
+  key: Float
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionKm_delivery {
+  key: Float
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionConfiguracion {
+  key: JSON
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionPolyline {
+  key: String
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionPorcentaje {
+  key: Float
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionComisionBmas {
+  key: Float
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionId_orden_contifico {
+  key: String
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionPago_recibido {
+  key: Boolean
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionAcepta_empresa {
+  key: DateTime
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionAcepta_repartidor {
+  key: DateTime
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionRecoge_repartidor {
+  key: DateTime
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionEntrega_repartidor {
+  key: DateTime
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionEfectivo_cliente {
+  key: Float
+  connection: OrdenesConnection
+}
+
+type OrdenesConnectionPublished_at {
+  key: DateTime
+  connection: OrdenesConnection
+}
+
+input OrdeneInput {
+  usuario: ID
+  estado: Boolean
+  facturacion_usuario: ID
+  direcciones_usuario: ID
+  pagado: Boolean
+  payphone: ID
+  empresa: ID
+  entregaEmpresa: Boolean
+  entregaScooter: Boolean
+  entregaFinalizado: Boolean
+  pagoEfectivo: Boolean
+  sucursal: ID
+  repartidor: ID
+  distancia_empresa: String
+  duracion_empresa: String
+  distancia_cliente: String
+  duracion_cliente: String
+  total: Float
+  subtotal_delivery: Float
+  total_delivery: Float
+  km_delivery: Float
+  configuracion: JSON
+  polyline: String
+  porcentaje: Float
+  comisionBmas: Float
+  id_orden_contifico: String
+  ordenes_productos: [ID]
+  pago_recibido: Boolean
+  acepta_empresa: DateTime
+  acepta_repartidor: DateTime
+  recoge_repartidor: DateTime
+  entrega_repartidor: DateTime
+  efectivo_cliente: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editOrdeneInput {
+  usuario: ID
+  estado: Boolean
+  facturacion_usuario: ID
+  direcciones_usuario: ID
+  pagado: Boolean
+  payphone: ID
+  empresa: ID
+  entregaEmpresa: Boolean
+  entregaScooter: Boolean
+  entregaFinalizado: Boolean
+  pagoEfectivo: Boolean
+  sucursal: ID
+  repartidor: ID
+  distancia_empresa: String
+  duracion_empresa: String
+  distancia_cliente: String
+  duracion_cliente: String
+  total: Float
+  subtotal_delivery: Float
+  total_delivery: Float
+  km_delivery: Float
+  configuracion: JSON
+  polyline: String
+  porcentaje: Float
+  comisionBmas: Float
+  id_orden_contifico: String
+  ordenes_productos: [ID]
+  pago_recibido: Boolean
+  acepta_empresa: DateTime
+  acepta_repartidor: DateTime
+  recoge_repartidor: DateTime
+  entrega_repartidor: DateTime
+  efectivo_cliente: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createOrdeneInput {
+  data: OrdeneInput
+}
+
+type createOrdenePayload {
+  ordene: Ordenes
+}
+
+input updateOrdeneInput {
+  where: InputID
+  data: editOrdeneInput
+}
+
+type updateOrdenePayload {
+  ordene: Ordenes
+}
+
+input deleteOrdeneInput {
+  where: InputID
+}
+
+type deleteOrdenePayload {
+  ordene: Ordenes
+}
+
+type Paises {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  codigo: Int
+  nombre: String
+  moneda: String
+  impuesto: Float
+  porcentaje_competencia: Float
+  porcentaje_bmas: Float
+  porcentaje_bmas_lluvia: Float
+  valor_km: Float
+  valor_km_lluvia: Float
+  porcentaje_chofer: Float
+  simbolo: String
+  km_redonda: Float
+  published_at: DateTime
+}
+
+type PaisesConnection {
+  values: [Paises]
+  groupBy: PaisesGroupBy
+  aggregate: PaisesAggregator
+}
+
+type PaisesAggregator {
+  count: Int
+  totalCount: Int
+  sum: PaisesAggregatorSum
+  avg: PaisesAggregatorAvg
+  min: PaisesAggregatorMin
+  max: PaisesAggregatorMax
+}
+
+type PaisesAggregatorSum {
+  codigo: Float
+  impuesto: Float
+  porcentaje_competencia: Float
+  porcentaje_bmas: Float
+  porcentaje_bmas_lluvia: Float
+  valor_km: Float
+  valor_km_lluvia: Float
+  porcentaje_chofer: Float
+  km_redonda: Float
+}
+
+type PaisesAggregatorAvg {
+  codigo: Float
+  impuesto: Float
+  porcentaje_competencia: Float
+  porcentaje_bmas: Float
+  porcentaje_bmas_lluvia: Float
+  valor_km: Float
+  valor_km_lluvia: Float
+  porcentaje_chofer: Float
+  km_redonda: Float
+}
+
+type PaisesAggregatorMin {
+  codigo: Float
+  impuesto: Float
+  porcentaje_competencia: Float
+  porcentaje_bmas: Float
+  porcentaje_bmas_lluvia: Float
+  valor_km: Float
+  valor_km_lluvia: Float
+  porcentaje_chofer: Float
+  km_redonda: Float
+}
+
+type PaisesAggregatorMax {
+  codigo: Float
+  impuesto: Float
+  porcentaje_competencia: Float
+  porcentaje_bmas: Float
+  porcentaje_bmas_lluvia: Float
+  valor_km: Float
+  valor_km_lluvia: Float
+  porcentaje_chofer: Float
+  km_redonda: Float
+}
+
+type PaisesGroupBy {
+  id: [PaisesConnectionId]
+  _id: [PaisesConnection_id]
+  createdAt: [PaisesConnectionCreatedAt]
+  updatedAt: [PaisesConnectionUpdatedAt]
+  codigo: [PaisesConnectionCodigo]
+  nombre: [PaisesConnectionNombre]
+  moneda: [PaisesConnectionMoneda]
+  impuesto: [PaisesConnectionImpuesto]
+  porcentaje_competencia: [PaisesConnectionPorcentaje_competencia]
+  porcentaje_bmas: [PaisesConnectionPorcentaje_bmas]
+  porcentaje_bmas_lluvia: [PaisesConnectionPorcentaje_bmas_lluvia]
+  valor_km: [PaisesConnectionValor_km]
+  valor_km_lluvia: [PaisesConnectionValor_km_lluvia]
+  porcentaje_chofer: [PaisesConnectionPorcentaje_chofer]
+  simbolo: [PaisesConnectionSimbolo]
+  km_redonda: [PaisesConnectionKm_redonda]
+  published_at: [PaisesConnectionPublished_at]
+}
+
+type PaisesConnectionId {
+  key: ID
+  connection: PaisesConnection
+}
+
+type PaisesConnection_id {
+  key: ID
+  connection: PaisesConnection
+}
+
+type PaisesConnectionCreatedAt {
+  key: DateTime
+  connection: PaisesConnection
+}
+
+type PaisesConnectionUpdatedAt {
+  key: DateTime
+  connection: PaisesConnection
+}
+
+type PaisesConnectionCodigo {
+  key: Int
+  connection: PaisesConnection
+}
+
+type PaisesConnectionNombre {
+  key: String
+  connection: PaisesConnection
+}
+
+type PaisesConnectionMoneda {
+  key: String
+  connection: PaisesConnection
+}
+
+type PaisesConnectionImpuesto {
+  key: Float
+  connection: PaisesConnection
+}
+
+type PaisesConnectionPorcentaje_competencia {
+  key: Float
+  connection: PaisesConnection
+}
+
+type PaisesConnectionPorcentaje_bmas {
+  key: Float
+  connection: PaisesConnection
+}
+
+type PaisesConnectionPorcentaje_bmas_lluvia {
+  key: Float
+  connection: PaisesConnection
+}
+
+type PaisesConnectionValor_km {
+  key: Float
+  connection: PaisesConnection
+}
+
+type PaisesConnectionValor_km_lluvia {
+  key: Float
+  connection: PaisesConnection
+}
+
+type PaisesConnectionPorcentaje_chofer {
+  key: Float
+  connection: PaisesConnection
+}
+
+type PaisesConnectionSimbolo {
+  key: String
+  connection: PaisesConnection
+}
+
+type PaisesConnectionKm_redonda {
+  key: Float
+  connection: PaisesConnection
+}
+
+type PaisesConnectionPublished_at {
+  key: DateTime
+  connection: PaisesConnection
+}
+
+input PaiseInput {
+  codigo: Int
+  nombre: String
+  moneda: String
+  impuesto: Float
+  porcentaje_competencia: Float
+  porcentaje_bmas: Float
+  porcentaje_bmas_lluvia: Float
+  valor_km: Float
+  valor_km_lluvia: Float
+  porcentaje_chofer: Float
+  simbolo: String
+  km_redonda: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaiseInput {
+  codigo: Int
+  nombre: String
+  moneda: String
+  impuesto: Float
+  porcentaje_competencia: Float
+  porcentaje_bmas: Float
+  porcentaje_bmas_lluvia: Float
+  valor_km: Float
+  valor_km_lluvia: Float
+  porcentaje_chofer: Float
+  simbolo: String
+  km_redonda: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createPaiseInput {
+  data: PaiseInput
+}
+
+type createPaisePayload {
+  paise: Paises
+}
+
+input updatePaiseInput {
+  where: InputID
+  data: editPaiseInput
+}
+
+type updatePaisePayload {
+  paise: Paises
+}
+
+input deletePaiseInput {
+  where: InputID
+}
+
+type deletePaisePayload {
+  paise: Paises
+}
+
+type Payphone {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  usuario: UsersPermissionsUser
+  estado: Boolean
+  celular: String
+  published_at: DateTime
+}
+
+type PayphoneConnection {
+  values: [Payphone]
+  groupBy: PayphoneGroupBy
+  aggregate: PayphoneAggregator
+}
+
+type PayphoneAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PayphoneGroupBy {
+  id: [PayphoneConnectionId]
+  _id: [PayphoneConnection_id]
+  createdAt: [PayphoneConnectionCreatedAt]
+  updatedAt: [PayphoneConnectionUpdatedAt]
+  usuario: [PayphoneConnectionUsuario]
+  estado: [PayphoneConnectionEstado]
+  celular: [PayphoneConnectionCelular]
+  published_at: [PayphoneConnectionPublished_at]
+}
+
+type PayphoneConnectionId {
+  key: ID
+  connection: PayphoneConnection
+}
+
+type PayphoneConnection_id {
+  key: ID
+  connection: PayphoneConnection
+}
+
+type PayphoneConnectionCreatedAt {
+  key: DateTime
+  connection: PayphoneConnection
+}
+
+type PayphoneConnectionUpdatedAt {
+  key: DateTime
+  connection: PayphoneConnection
+}
+
+type PayphoneConnectionUsuario {
+  key: ID
+  connection: PayphoneConnection
+}
+
+type PayphoneConnectionEstado {
+  key: Boolean
+  connection: PayphoneConnection
+}
+
+type PayphoneConnectionCelular {
+  key: String
+  connection: PayphoneConnection
+}
+
+type PayphoneConnectionPublished_at {
+  key: DateTime
+  connection: PayphoneConnection
+}
+
+input PayphoneInput {
+  usuario: ID
+  estado: Boolean
+  celular: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editPayphoneInput {
+  usuario: ID
+  estado: Boolean
+  celular: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createPayphoneInput {
+  data: PayphoneInput
+}
+
+type createPayphonePayload {
+  payphone: Payphone
+}
+
+input updatePayphoneInput {
+  where: InputID
+  data: editPayphoneInput
+}
+
+type updatePayphonePayload {
+  payphone: Payphone
+}
+
+input deletePayphoneInput {
+  where: InputID
+}
+
+type deletePayphonePayload {
+  payphone: Payphone
+}
+
+type Perfiles {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  nombre: String
+  descripcion: String
+  published_at: DateTime
+}
+
+type PerfilesConnection {
+  values: [Perfiles]
+  groupBy: PerfilesGroupBy
+  aggregate: PerfilesAggregator
+}
+
+type PerfilesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PerfilesGroupBy {
+  id: [PerfilesConnectionId]
+  _id: [PerfilesConnection_id]
+  createdAt: [PerfilesConnectionCreatedAt]
+  updatedAt: [PerfilesConnectionUpdatedAt]
+  nombre: [PerfilesConnectionNombre]
+  descripcion: [PerfilesConnectionDescripcion]
+  published_at: [PerfilesConnectionPublished_at]
+}
+
+type PerfilesConnectionId {
+  key: ID
+  connection: PerfilesConnection
+}
+
+type PerfilesConnection_id {
+  key: ID
+  connection: PerfilesConnection
+}
+
+type PerfilesConnectionCreatedAt {
+  key: DateTime
+  connection: PerfilesConnection
+}
+
+type PerfilesConnectionUpdatedAt {
+  key: DateTime
+  connection: PerfilesConnection
+}
+
+type PerfilesConnectionNombre {
+  key: String
+  connection: PerfilesConnection
+}
+
+type PerfilesConnectionDescripcion {
+  key: String
+  connection: PerfilesConnection
+}
+
+type PerfilesConnectionPublished_at {
+  key: DateTime
+  connection: PerfilesConnection
+}
+
+input PerfileInput {
+  nombre: String
+  descripcion: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editPerfileInput {
+  nombre: String
+  descripcion: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createPerfileInput {
+  data: PerfileInput
+}
+
+type createPerfilePayload {
+  perfile: Perfiles
+}
+
+input updatePerfileInput {
+  where: InputID
+  data: editPerfileInput
+}
+
+type updatePerfilePayload {
+  perfile: Perfiles
+}
+
+input deletePerfileInput {
+  where: InputID
+}
+
+type deletePerfilePayload {
+  perfile: Perfiles
+}
+
+type ProductoEmpresaStock {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  producto: Productos
+  empresa: Empresas
+  stock: Int
+  published_at: DateTime
+}
+
+type ProductoEmpresaStockConnection {
+  values: [ProductoEmpresaStock]
+  groupBy: ProductoEmpresaStockGroupBy
+  aggregate: ProductoEmpresaStockAggregator
+}
+
+type ProductoEmpresaStockAggregator {
+  count: Int
+  totalCount: Int
+  sum: ProductoEmpresaStockAggregatorSum
+  avg: ProductoEmpresaStockAggregatorAvg
+  min: ProductoEmpresaStockAggregatorMin
+  max: ProductoEmpresaStockAggregatorMax
+}
+
+type ProductoEmpresaStockAggregatorSum {
+  stock: Float
+}
+
+type ProductoEmpresaStockAggregatorAvg {
+  stock: Float
+}
+
+type ProductoEmpresaStockAggregatorMin {
+  stock: Float
+}
+
+type ProductoEmpresaStockAggregatorMax {
+  stock: Float
+}
+
+type ProductoEmpresaStockGroupBy {
+  id: [ProductoEmpresaStockConnectionId]
+  _id: [ProductoEmpresaStockConnection_id]
+  createdAt: [ProductoEmpresaStockConnectionCreatedAt]
+  updatedAt: [ProductoEmpresaStockConnectionUpdatedAt]
+  producto: [ProductoEmpresaStockConnectionProducto]
+  empresa: [ProductoEmpresaStockConnectionEmpresa]
+  stock: [ProductoEmpresaStockConnectionStock]
+  published_at: [ProductoEmpresaStockConnectionPublished_at]
+}
+
+type ProductoEmpresaStockConnectionId {
+  key: ID
+  connection: ProductoEmpresaStockConnection
+}
+
+type ProductoEmpresaStockConnection_id {
+  key: ID
+  connection: ProductoEmpresaStockConnection
+}
+
+type ProductoEmpresaStockConnectionCreatedAt {
+  key: DateTime
+  connection: ProductoEmpresaStockConnection
+}
+
+type ProductoEmpresaStockConnectionUpdatedAt {
+  key: DateTime
+  connection: ProductoEmpresaStockConnection
+}
+
+type ProductoEmpresaStockConnectionProducto {
+  key: ID
+  connection: ProductoEmpresaStockConnection
+}
+
+type ProductoEmpresaStockConnectionEmpresa {
+  key: ID
+  connection: ProductoEmpresaStockConnection
+}
+
+type ProductoEmpresaStockConnectionStock {
+  key: Int
+  connection: ProductoEmpresaStockConnection
+}
+
+type ProductoEmpresaStockConnectionPublished_at {
+  key: DateTime
+  connection: ProductoEmpresaStockConnection
+}
+
+input ProductoEmpresaStockInput {
+  producto: ID
+  empresa: ID
+  stock: Int
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editProductoEmpresaStockInput {
+  producto: ID
+  empresa: ID
+  stock: Int
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createProductoEmpresaStockInput {
+  data: ProductoEmpresaStockInput
+}
+
+type createProductoEmpresaStockPayload {
+  productoEmpresaStock: ProductoEmpresaStock
+}
+
+input updateProductoEmpresaStockInput {
+  where: InputID
+  data: editProductoEmpresaStockInput
+}
+
+type updateProductoEmpresaStockPayload {
+  productoEmpresaStock: ProductoEmpresaStock
+}
+
+input deleteProductoEmpresaStockInput {
+  where: InputID
+}
+
+type deleteProductoEmpresaStockPayload {
+  productoEmpresaStock: ProductoEmpresaStock
+}
+
+type ProductoSucursalStock {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  producto: Productos
+  sucursale: Sucursales
+  stock: Int
+  published_at: DateTime
+}
+
+type ProductoSucursalStockConnection {
+  values: [ProductoSucursalStock]
+  groupBy: ProductoSucursalStockGroupBy
+  aggregate: ProductoSucursalStockAggregator
+}
+
+type ProductoSucursalStockAggregator {
+  count: Int
+  totalCount: Int
+  sum: ProductoSucursalStockAggregatorSum
+  avg: ProductoSucursalStockAggregatorAvg
+  min: ProductoSucursalStockAggregatorMin
+  max: ProductoSucursalStockAggregatorMax
+}
+
+type ProductoSucursalStockAggregatorSum {
+  stock: Float
+}
+
+type ProductoSucursalStockAggregatorAvg {
+  stock: Float
+}
+
+type ProductoSucursalStockAggregatorMin {
+  stock: Float
+}
+
+type ProductoSucursalStockAggregatorMax {
+  stock: Float
+}
+
+type ProductoSucursalStockGroupBy {
+  id: [ProductoSucursalStockConnectionId]
+  _id: [ProductoSucursalStockConnection_id]
+  createdAt: [ProductoSucursalStockConnectionCreatedAt]
+  updatedAt: [ProductoSucursalStockConnectionUpdatedAt]
+  producto: [ProductoSucursalStockConnectionProducto]
+  sucursale: [ProductoSucursalStockConnectionSucursale]
+  stock: [ProductoSucursalStockConnectionStock]
+  published_at: [ProductoSucursalStockConnectionPublished_at]
+}
+
+type ProductoSucursalStockConnectionId {
+  key: ID
+  connection: ProductoSucursalStockConnection
+}
+
+type ProductoSucursalStockConnection_id {
+  key: ID
+  connection: ProductoSucursalStockConnection
+}
+
+type ProductoSucursalStockConnectionCreatedAt {
+  key: DateTime
+  connection: ProductoSucursalStockConnection
+}
+
+type ProductoSucursalStockConnectionUpdatedAt {
+  key: DateTime
+  connection: ProductoSucursalStockConnection
+}
+
+type ProductoSucursalStockConnectionProducto {
+  key: ID
+  connection: ProductoSucursalStockConnection
+}
+
+type ProductoSucursalStockConnectionSucursale {
+  key: ID
+  connection: ProductoSucursalStockConnection
+}
+
+type ProductoSucursalStockConnectionStock {
+  key: Int
+  connection: ProductoSucursalStockConnection
+}
+
+type ProductoSucursalStockConnectionPublished_at {
+  key: DateTime
+  connection: ProductoSucursalStockConnection
+}
+
+input ProductoSucursalStockInput {
+  producto: ID
+  sucursale: ID
+  stock: Int
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editProductoSucursalStockInput {
+  producto: ID
+  sucursale: ID
+  stock: Int
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createProductoSucursalStockInput {
+  data: ProductoSucursalStockInput
+}
+
+type createProductoSucursalStockPayload {
+  productoSucursalStock: ProductoSucursalStock
+}
+
+input updateProductoSucursalStockInput {
+  where: InputID
+  data: editProductoSucursalStockInput
+}
+
+type updateProductoSucursalStockPayload {
+  productoSucursalStock: ProductoSucursalStock
+}
+
+input deleteProductoSucursalStockInput {
+  where: InputID
+}
+
+type deleteProductoSucursalStockPayload {
+  productoSucursalStock: ProductoSucursalStock
+}
+
+type Productos {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  codigo: Int
+  nombre: String
+  descripcion: String
+  imagen: UploadFile
+  empresa: Empresas
+  precio: Float
+  promocione: Promociones
+  opciones: JSON
+  id_producto_contifico: String
+  published_at: DateTime
+  categorias(sort: String, limit: Int, start: Int, where: JSON): [Categorias]
+  extras_productos(sort: String, limit: Int, start: Int, where: JSON): [OpcionesProductos]
+}
+
+type ProductosConnection {
+  values: [Productos]
+  groupBy: ProductosGroupBy
+  aggregate: ProductosAggregator
+}
+
+type ProductosAggregator {
+  count: Int
+  totalCount: Int
+  sum: ProductosAggregatorSum
+  avg: ProductosAggregatorAvg
+  min: ProductosAggregatorMin
+  max: ProductosAggregatorMax
+}
+
+type ProductosAggregatorSum {
+  codigo: Float
+  precio: Float
+}
+
+type ProductosAggregatorAvg {
+  codigo: Float
+  precio: Float
+}
+
+type ProductosAggregatorMin {
+  codigo: Float
+  precio: Float
+}
+
+type ProductosAggregatorMax {
+  codigo: Float
+  precio: Float
+}
+
+type ProductosGroupBy {
+  id: [ProductosConnectionId]
+  _id: [ProductosConnection_id]
+  createdAt: [ProductosConnectionCreatedAt]
+  updatedAt: [ProductosConnectionUpdatedAt]
+  codigo: [ProductosConnectionCodigo]
+  nombre: [ProductosConnectionNombre]
+  descripcion: [ProductosConnectionDescripcion]
+  imagen: [ProductosConnectionImagen]
+  empresa: [ProductosConnectionEmpresa]
+  precio: [ProductosConnectionPrecio]
+  promocione: [ProductosConnectionPromocione]
+  opciones: [ProductosConnectionOpciones]
+  id_producto_contifico: [ProductosConnectionId_producto_contifico]
+  published_at: [ProductosConnectionPublished_at]
+}
+
+type ProductosConnectionId {
+  key: ID
+  connection: ProductosConnection
+}
+
+type ProductosConnection_id {
+  key: ID
+  connection: ProductosConnection
+}
+
+type ProductosConnectionCreatedAt {
+  key: DateTime
+  connection: ProductosConnection
+}
+
+type ProductosConnectionUpdatedAt {
+  key: DateTime
+  connection: ProductosConnection
+}
+
+type ProductosConnectionCodigo {
+  key: Int
+  connection: ProductosConnection
+}
+
+type ProductosConnectionNombre {
+  key: String
+  connection: ProductosConnection
+}
+
+type ProductosConnectionDescripcion {
+  key: String
+  connection: ProductosConnection
+}
+
+type ProductosConnectionImagen {
+  key: ID
+  connection: ProductosConnection
+}
+
+type ProductosConnectionEmpresa {
+  key: ID
+  connection: ProductosConnection
+}
+
+type ProductosConnectionPrecio {
+  key: Float
+  connection: ProductosConnection
+}
+
+type ProductosConnectionPromocione {
+  key: ID
+  connection: ProductosConnection
+}
+
+type ProductosConnectionOpciones {
+  key: JSON
+  connection: ProductosConnection
+}
+
+type ProductosConnectionId_producto_contifico {
+  key: String
+  connection: ProductosConnection
+}
+
+type ProductosConnectionPublished_at {
+  key: DateTime
+  connection: ProductosConnection
+}
+
+input ProductoInput {
+  codigo: Int
+  nombre: String
+  descripcion: String
+  imagen: ID
+  empresa: ID
+  precio: Float
+  categorias: [ID]
+  promocione: ID
+  extras_productos: [ID]
+  opciones: JSON
+  id_producto_contifico: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editProductoInput {
+  codigo: Int
+  nombre: String
+  descripcion: String
+  imagen: ID
+  empresa: ID
+  precio: Float
+  categorias: [ID]
+  promocione: ID
+  extras_productos: [ID]
+  opciones: JSON
+  id_producto_contifico: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createProductoInput {
+  data: ProductoInput
+}
+
+type createProductoPayload {
+  producto: Productos
+}
+
+input updateProductoInput {
+  where: InputID
+  data: editProductoInput
+}
+
+type updateProductoPayload {
+  producto: Productos
+}
+
+input deleteProductoInput {
+  where: InputID
+}
+
+type deleteProductoPayload {
+  producto: Productos
+}
+
+type PromoEmpresas {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Nombre: String
+  fecha_fin: DateTime
+  Estado: Boolean
+  empresa: Empresas
+  published_at: DateTime
+  Imagen(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+type PromoEmpresasConnection {
+  values: [PromoEmpresas]
+  groupBy: PromoEmpresasGroupBy
+  aggregate: PromoEmpresasAggregator
+}
+
+type PromoEmpresasAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PromoEmpresasGroupBy {
+  id: [PromoEmpresasConnectionId]
+  _id: [PromoEmpresasConnection_id]
+  createdAt: [PromoEmpresasConnectionCreatedAt]
+  updatedAt: [PromoEmpresasConnectionUpdatedAt]
+  Nombre: [PromoEmpresasConnectionNombre]
+  fecha_fin: [PromoEmpresasConnectionFecha_fin]
+  Estado: [PromoEmpresasConnectionEstado]
+  empresa: [PromoEmpresasConnectionEmpresa]
+  published_at: [PromoEmpresasConnectionPublished_at]
+}
+
+type PromoEmpresasConnectionId {
+  key: ID
+  connection: PromoEmpresasConnection
+}
+
+type PromoEmpresasConnection_id {
+  key: ID
+  connection: PromoEmpresasConnection
+}
+
+type PromoEmpresasConnectionCreatedAt {
+  key: DateTime
+  connection: PromoEmpresasConnection
+}
+
+type PromoEmpresasConnectionUpdatedAt {
+  key: DateTime
+  connection: PromoEmpresasConnection
+}
+
+type PromoEmpresasConnectionNombre {
+  key: String
+  connection: PromoEmpresasConnection
+}
+
+type PromoEmpresasConnectionFecha_fin {
+  key: DateTime
+  connection: PromoEmpresasConnection
+}
+
+type PromoEmpresasConnectionEstado {
+  key: Boolean
+  connection: PromoEmpresasConnection
+}
+
+type PromoEmpresasConnectionEmpresa {
+  key: ID
+  connection: PromoEmpresasConnection
+}
+
+type PromoEmpresasConnectionPublished_at {
+  key: DateTime
+  connection: PromoEmpresasConnection
+}
+
+input PromoEmpresaInput {
+  Nombre: String
+  fecha_fin: DateTime
+  Estado: Boolean
+  Imagen: [ID]
+  empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editPromoEmpresaInput {
+  Nombre: String
+  fecha_fin: DateTime
+  Estado: Boolean
+  Imagen: [ID]
+  empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createPromoEmpresaInput {
+  data: PromoEmpresaInput
+}
+
+type createPromoEmpresaPayload {
+  promoEmpresa: PromoEmpresas
+}
+
+input updatePromoEmpresaInput {
+  where: InputID
+  data: editPromoEmpresaInput
+}
+
+type updatePromoEmpresaPayload {
+  promoEmpresa: PromoEmpresas
+}
+
+input deletePromoEmpresaInput {
+  where: InputID
+}
+
+type deletePromoEmpresaPayload {
+  promoEmpresa: PromoEmpresas
+}
+
+type Promociones {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  descripcion: String!
+  porcentaje: Float
+  estado: Boolean
+  empresa: Empresas
+  published_at: DateTime
+  imagen(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  productos(sort: String, limit: Int, start: Int, where: JSON): [Productos]
+}
+
+type PromocionesConnection {
+  values: [Promociones]
+  groupBy: PromocionesGroupBy
+  aggregate: PromocionesAggregator
+}
+
+type PromocionesAggregator {
+  count: Int
+  totalCount: Int
+  sum: PromocionesAggregatorSum
+  avg: PromocionesAggregatorAvg
+  min: PromocionesAggregatorMin
+  max: PromocionesAggregatorMax
+}
+
+type PromocionesAggregatorSum {
+  porcentaje: Float
+}
+
+type PromocionesAggregatorAvg {
+  porcentaje: Float
+}
+
+type PromocionesAggregatorMin {
+  porcentaje: Float
+}
+
+type PromocionesAggregatorMax {
+  porcentaje: Float
+}
+
+type PromocionesGroupBy {
+  id: [PromocionesConnectionId]
+  _id: [PromocionesConnection_id]
+  createdAt: [PromocionesConnectionCreatedAt]
+  updatedAt: [PromocionesConnectionUpdatedAt]
+  descripcion: [PromocionesConnectionDescripcion]
+  porcentaje: [PromocionesConnectionPorcentaje]
+  estado: [PromocionesConnectionEstado]
+  empresa: [PromocionesConnectionEmpresa]
+  published_at: [PromocionesConnectionPublished_at]
+}
+
+type PromocionesConnectionId {
+  key: ID
+  connection: PromocionesConnection
+}
+
+type PromocionesConnection_id {
+  key: ID
+  connection: PromocionesConnection
+}
+
+type PromocionesConnectionCreatedAt {
+  key: DateTime
+  connection: PromocionesConnection
+}
+
+type PromocionesConnectionUpdatedAt {
+  key: DateTime
+  connection: PromocionesConnection
+}
+
+type PromocionesConnectionDescripcion {
+  key: String
+  connection: PromocionesConnection
+}
+
+type PromocionesConnectionPorcentaje {
+  key: Float
+  connection: PromocionesConnection
+}
+
+type PromocionesConnectionEstado {
+  key: Boolean
+  connection: PromocionesConnection
+}
+
+type PromocionesConnectionEmpresa {
+  key: ID
+  connection: PromocionesConnection
+}
+
+type PromocionesConnectionPublished_at {
+  key: DateTime
+  connection: PromocionesConnection
+}
+
+input PromocioneInput {
+  descripcion: String!
+  porcentaje: Float
+  imagen: [ID]
+  estado: Boolean
+  productos: [ID]
+  empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editPromocioneInput {
+  descripcion: String
+  porcentaje: Float
+  imagen: [ID]
+  estado: Boolean
+  productos: [ID]
+  empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createPromocioneInput {
+  data: PromocioneInput
+}
+
+type createPromocionePayload {
+  promocione: Promociones
+}
+
+input updatePromocioneInput {
+  where: InputID
+  data: editPromocioneInput
+}
+
+type updatePromocionePayload {
+  promocione: Promociones
+}
+
+input deletePromocioneInput {
+  where: InputID
+}
+
+type deletePromocionePayload {
+  promocione: Promociones
+}
+
+type RecargasKms {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  fecha: Date
+  cantidadkms: Float
+  valorkm: Float
+  kmcosto: Float
+  banco: String
+  kmsfuerarango: Float
+  valoradicional: Float
+  calculoadicional: Float
+  subtotal: Float
+  iva: Float
+  totaliva: Float
+  total: Float
+  valormotorizado: Float
+  totalmotorizado: Float
+  bmasganancia: Float
+  empresa: Empresas
+  observacion: JSON
+  published_at: DateTime
+}
+
+type RecargasKmsConnection {
+  values: [RecargasKms]
+  groupBy: RecargasKmsGroupBy
+  aggregate: RecargasKmsAggregator
+}
+
+type RecargasKmsAggregator {
+  count: Int
+  totalCount: Int
+  sum: RecargasKmsAggregatorSum
+  avg: RecargasKmsAggregatorAvg
+  min: RecargasKmsAggregatorMin
+  max: RecargasKmsAggregatorMax
+}
+
+type RecargasKmsAggregatorSum {
+  cantidadkms: Float
+  valorkm: Float
+  kmcosto: Float
+  kmsfuerarango: Float
+  valoradicional: Float
+  calculoadicional: Float
+  subtotal: Float
+  iva: Float
+  totaliva: Float
+  total: Float
+  valormotorizado: Float
+  totalmotorizado: Float
+  bmasganancia: Float
+}
+
+type RecargasKmsAggregatorAvg {
+  cantidadkms: Float
+  valorkm: Float
+  kmcosto: Float
+  kmsfuerarango: Float
+  valoradicional: Float
+  calculoadicional: Float
+  subtotal: Float
+  iva: Float
+  totaliva: Float
+  total: Float
+  valormotorizado: Float
+  totalmotorizado: Float
+  bmasganancia: Float
+}
+
+type RecargasKmsAggregatorMin {
+  cantidadkms: Float
+  valorkm: Float
+  kmcosto: Float
+  kmsfuerarango: Float
+  valoradicional: Float
+  calculoadicional: Float
+  subtotal: Float
+  iva: Float
+  totaliva: Float
+  total: Float
+  valormotorizado: Float
+  totalmotorizado: Float
+  bmasganancia: Float
+}
+
+type RecargasKmsAggregatorMax {
+  cantidadkms: Float
+  valorkm: Float
+  kmcosto: Float
+  kmsfuerarango: Float
+  valoradicional: Float
+  calculoadicional: Float
+  subtotal: Float
+  iva: Float
+  totaliva: Float
+  total: Float
+  valormotorizado: Float
+  totalmotorizado: Float
+  bmasganancia: Float
+}
+
+type RecargasKmsGroupBy {
+  id: [RecargasKmsConnectionId]
+  _id: [RecargasKmsConnection_id]
+  createdAt: [RecargasKmsConnectionCreatedAt]
+  updatedAt: [RecargasKmsConnectionUpdatedAt]
+  fecha: [RecargasKmsConnectionFecha]
+  cantidadkms: [RecargasKmsConnectionCantidadkms]
+  valorkm: [RecargasKmsConnectionValorkm]
+  kmcosto: [RecargasKmsConnectionKmcosto]
+  banco: [RecargasKmsConnectionBanco]
+  kmsfuerarango: [RecargasKmsConnectionKmsfuerarango]
+  valoradicional: [RecargasKmsConnectionValoradicional]
+  calculoadicional: [RecargasKmsConnectionCalculoadicional]
+  subtotal: [RecargasKmsConnectionSubtotal]
+  iva: [RecargasKmsConnectionIva]
+  totaliva: [RecargasKmsConnectionTotaliva]
+  total: [RecargasKmsConnectionTotal]
+  valormotorizado: [RecargasKmsConnectionValormotorizado]
+  totalmotorizado: [RecargasKmsConnectionTotalmotorizado]
+  bmasganancia: [RecargasKmsConnectionBmasganancia]
+  empresa: [RecargasKmsConnectionEmpresa]
+  observacion: [RecargasKmsConnectionObservacion]
+  published_at: [RecargasKmsConnectionPublished_at]
+}
+
+type RecargasKmsConnectionId {
+  key: ID
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnection_id {
+  key: ID
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionCreatedAt {
+  key: DateTime
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionUpdatedAt {
+  key: DateTime
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionFecha {
+  key: ID
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionCantidadkms {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionValorkm {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionKmcosto {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionBanco {
+  key: String
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionKmsfuerarango {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionValoradicional {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionCalculoadicional {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionSubtotal {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionIva {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionTotaliva {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionTotal {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionValormotorizado {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionTotalmotorizado {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionBmasganancia {
+  key: Float
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionEmpresa {
+  key: ID
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionObservacion {
+  key: JSON
+  connection: RecargasKmsConnection
+}
+
+type RecargasKmsConnectionPublished_at {
+  key: DateTime
+  connection: RecargasKmsConnection
+}
+
+input RecargasKmInput {
+  fecha: Date
+  cantidadkms: Float
+  valorkm: Float
+  kmcosto: Float
+  banco: String
+  kmsfuerarango: Float
+  valoradicional: Float
+  calculoadicional: Float
+  subtotal: Float
+  iva: Float
+  totaliva: Float
+  total: Float
+  valormotorizado: Float
+  totalmotorizado: Float
+  bmasganancia: Float
+  empresa: ID
+  observacion: JSON
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editRecargasKmInput {
+  fecha: Date
+  cantidadkms: Float
+  valorkm: Float
+  kmcosto: Float
+  banco: String
+  kmsfuerarango: Float
+  valoradicional: Float
+  calculoadicional: Float
+  subtotal: Float
+  iva: Float
+  totaliva: Float
+  total: Float
+  valormotorizado: Float
+  totalmotorizado: Float
+  bmasganancia: Float
+  empresa: ID
+  observacion: JSON
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createRecargasKmInput {
+  data: RecargasKmInput
+}
+
+type createRecargasKmPayload {
+  recargasKm: RecargasKms
+}
+
+input updateRecargasKmInput {
+  where: InputID
+  data: editRecargasKmInput
+}
+
+type updateRecargasKmPayload {
+  recargasKm: RecargasKms
+}
+
+input deleteRecargasKmInput {
+  where: InputID
+}
+
+type deleteRecargasKmPayload {
+  recargasKm: RecargasKms
+}
+
+type Rutas {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  orden: Ordenes
+  repartidor: UsersPermissionsUser
+  latitud: Float
+  longitud: Float
+  published_at: DateTime
+}
+
+type RutasConnection {
+  values: [Rutas]
+  groupBy: RutasGroupBy
+  aggregate: RutasAggregator
+}
+
+type RutasAggregator {
+  count: Int
+  totalCount: Int
+  sum: RutasAggregatorSum
+  avg: RutasAggregatorAvg
+  min: RutasAggregatorMin
+  max: RutasAggregatorMax
+}
+
+type RutasAggregatorSum {
+  latitud: Float
+  longitud: Float
+}
+
+type RutasAggregatorAvg {
+  latitud: Float
+  longitud: Float
+}
+
+type RutasAggregatorMin {
+  latitud: Float
+  longitud: Float
+}
+
+type RutasAggregatorMax {
+  latitud: Float
+  longitud: Float
+}
+
+type RutasGroupBy {
+  id: [RutasConnectionId]
+  _id: [RutasConnection_id]
+  createdAt: [RutasConnectionCreatedAt]
+  updatedAt: [RutasConnectionUpdatedAt]
+  orden: [RutasConnectionOrden]
+  repartidor: [RutasConnectionRepartidor]
+  latitud: [RutasConnectionLatitud]
+  longitud: [RutasConnectionLongitud]
+  published_at: [RutasConnectionPublished_at]
+}
+
+type RutasConnectionId {
+  key: ID
+  connection: RutasConnection
+}
+
+type RutasConnection_id {
+  key: ID
+  connection: RutasConnection
+}
+
+type RutasConnectionCreatedAt {
+  key: DateTime
+  connection: RutasConnection
+}
+
+type RutasConnectionUpdatedAt {
+  key: DateTime
+  connection: RutasConnection
+}
+
+type RutasConnectionOrden {
+  key: ID
+  connection: RutasConnection
+}
+
+type RutasConnectionRepartidor {
+  key: ID
+  connection: RutasConnection
+}
+
+type RutasConnectionLatitud {
+  key: Float
+  connection: RutasConnection
+}
+
+type RutasConnectionLongitud {
+  key: Float
+  connection: RutasConnection
+}
+
+type RutasConnectionPublished_at {
+  key: DateTime
+  connection: RutasConnection
+}
+
+input RutaInput {
+  orden: ID
+  repartidor: ID
+  latitud: Float
+  longitud: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editRutaInput {
+  orden: ID
+  repartidor: ID
+  latitud: Float
+  longitud: Float
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createRutaInput {
+  data: RutaInput
+}
+
+type createRutaPayload {
+  ruta: Rutas
+}
+
+input updateRutaInput {
+  where: InputID
+  data: editRutaInput
+}
+
+type updateRutaPayload {
+  ruta: Rutas
+}
+
+input deleteRutaInput {
+  where: InputID
+}
+
+type deleteRutaPayload {
+  ruta: Rutas
+}
+
+type Sucursales {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  nombre: String
+  telefono: Int
+  estado: Boolean
+  direccion: Direcciones
+  empresa: Empresas
+  published_at: DateTime
+}
+
+type SucursalesConnection {
+  values: [Sucursales]
+  groupBy: SucursalesGroupBy
+  aggregate: SucursalesAggregator
+}
+
+type SucursalesAggregator {
+  count: Int
+  totalCount: Int
+  sum: SucursalesAggregatorSum
+  avg: SucursalesAggregatorAvg
+  min: SucursalesAggregatorMin
+  max: SucursalesAggregatorMax
+}
+
+type SucursalesAggregatorSum {
+  telefono: Float
+}
+
+type SucursalesAggregatorAvg {
+  telefono: Float
+}
+
+type SucursalesAggregatorMin {
+  telefono: Float
+}
+
+type SucursalesAggregatorMax {
+  telefono: Float
+}
+
+type SucursalesGroupBy {
+  id: [SucursalesConnectionId]
+  _id: [SucursalesConnection_id]
+  createdAt: [SucursalesConnectionCreatedAt]
+  updatedAt: [SucursalesConnectionUpdatedAt]
+  nombre: [SucursalesConnectionNombre]
+  telefono: [SucursalesConnectionTelefono]
+  estado: [SucursalesConnectionEstado]
+  direccion: [SucursalesConnectionDireccion]
+  empresa: [SucursalesConnectionEmpresa]
+  published_at: [SucursalesConnectionPublished_at]
+}
+
+type SucursalesConnectionId {
+  key: ID
+  connection: SucursalesConnection
+}
+
+type SucursalesConnection_id {
+  key: ID
+  connection: SucursalesConnection
+}
+
+type SucursalesConnectionCreatedAt {
+  key: DateTime
+  connection: SucursalesConnection
+}
+
+type SucursalesConnectionUpdatedAt {
+  key: DateTime
+  connection: SucursalesConnection
+}
+
+type SucursalesConnectionNombre {
+  key: String
+  connection: SucursalesConnection
+}
+
+type SucursalesConnectionTelefono {
+  key: Int
+  connection: SucursalesConnection
+}
+
+type SucursalesConnectionEstado {
+  key: Boolean
+  connection: SucursalesConnection
+}
+
+type SucursalesConnectionDireccion {
+  key: ID
+  connection: SucursalesConnection
+}
+
+type SucursalesConnectionEmpresa {
+  key: ID
+  connection: SucursalesConnection
+}
+
+type SucursalesConnectionPublished_at {
+  key: DateTime
+  connection: SucursalesConnection
+}
+
+input SucursaleInput {
+  nombre: String
+  telefono: Int
+  estado: Boolean
+  direccion: ID
+  empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editSucursaleInput {
+  nombre: String
+  telefono: Int
+  estado: Boolean
+  direccion: ID
+  empresa: ID
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createSucursaleInput {
+  data: SucursaleInput
+}
+
+type createSucursalePayload {
+  sucursale: Sucursales
+}
+
+input updateSucursaleInput {
+  where: InputID
+  data: editSucursaleInput
+}
+
+type updateSucursalePayload {
+  sucursale: Sucursales
+}
+
+input deleteSucursaleInput {
+  where: InputID
+}
+
+type deleteSucursalePayload {
+  sucursale: Sucursales
+}
+
+type UserSaldo {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  usuario: UsersPermissionsUser
+  monto: Float
+  formapago: String
+  banco: String
+  referencia: String
+  observacion: String
+  fecha: Date
+  tipo: Int
+  published_at: DateTime
+}
+
+type UserSaldoConnection {
+  values: [UserSaldo]
+  groupBy: UserSaldoGroupBy
+  aggregate: UserSaldoAggregator
+}
+
+type UserSaldoAggregator {
+  count: Int
+  totalCount: Int
+  sum: UserSaldoAggregatorSum
+  avg: UserSaldoAggregatorAvg
+  min: UserSaldoAggregatorMin
+  max: UserSaldoAggregatorMax
+}
+
+type UserSaldoAggregatorSum {
+  monto: Float
+  tipo: Float
+}
+
+type UserSaldoAggregatorAvg {
+  monto: Float
+  tipo: Float
+}
+
+type UserSaldoAggregatorMin {
+  monto: Float
+  tipo: Float
+}
+
+type UserSaldoAggregatorMax {
+  monto: Float
+  tipo: Float
+}
+
+type UserSaldoGroupBy {
+  id: [UserSaldoConnectionId]
+  _id: [UserSaldoConnection_id]
+  createdAt: [UserSaldoConnectionCreatedAt]
+  updatedAt: [UserSaldoConnectionUpdatedAt]
+  usuario: [UserSaldoConnectionUsuario]
+  monto: [UserSaldoConnectionMonto]
+  formapago: [UserSaldoConnectionFormapago]
+  banco: [UserSaldoConnectionBanco]
+  referencia: [UserSaldoConnectionReferencia]
+  observacion: [UserSaldoConnectionObservacion]
+  fecha: [UserSaldoConnectionFecha]
+  tipo: [UserSaldoConnectionTipo]
+  published_at: [UserSaldoConnectionPublished_at]
+}
+
+type UserSaldoConnectionId {
+  key: ID
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnection_id {
+  key: ID
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionCreatedAt {
+  key: DateTime
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionUpdatedAt {
+  key: DateTime
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionUsuario {
+  key: ID
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionMonto {
+  key: Float
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionFormapago {
+  key: String
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionBanco {
+  key: String
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionReferencia {
+  key: String
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionObservacion {
+  key: String
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionFecha {
+  key: ID
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionTipo {
+  key: Int
+  connection: UserSaldoConnection
+}
+
+type UserSaldoConnectionPublished_at {
+  key: DateTime
+  connection: UserSaldoConnection
+}
+
+input UserSaldoInput {
+  usuario: ID
+  monto: Float
+  formapago: String
+  banco: String
+  referencia: String
+  observacion: String
+  fecha: Date
+  tipo: Int
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserSaldoInput {
+  usuario: ID
+  monto: Float
+  formapago: String
+  banco: String
+  referencia: String
+  observacion: String
+  fecha: Date
+  tipo: Int
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserSaldoInput {
+  data: UserSaldoInput
+}
+
+type createUserSaldoPayload {
+  userSaldo: UserSaldo
+}
+
+input updateUserSaldoInput {
+  where: InputID
+  data: editUserSaldoInput
+}
+
+type updateUserSaldoPayload {
+  userSaldo: UserSaldo
+}
+
+input deleteUserSaldoInput {
+  where: InputID
+}
+
+type deleteUserSaldoPayload {
+  userSaldo: UserSaldo
+}
+
+type UploadFile {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  _id: [UploadFileConnection_id]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  _id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  _id: [UsersPermissionsRoleConnection_id]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  nombres: String
+  apellidos: String
+  cedula: Int
+  perfil: Perfiles
+  telefono: String
+  avatar: UploadFile
+  estado: Boolean
+  terminos_y_condiciones: Boolean
+  empresas(sort: String, limit: Int, start: Int, where: JSON): [Empresas]
+  direcciones_usuarios(sort: String, limit: Int, start: Int, where: JSON): [DireccionesUsuarios]
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+  sum: UsersPermissionsUserAggregatorSum
+  avg: UsersPermissionsUserAggregatorAvg
+  min: UsersPermissionsUserAggregatorMin
+  max: UsersPermissionsUserAggregatorMax
+}
+
+type UsersPermissionsUserAggregatorSum {
+  cedula: Float
+}
+
+type UsersPermissionsUserAggregatorAvg {
+  cedula: Float
+}
+
+type UsersPermissionsUserAggregatorMin {
+  cedula: Float
+}
+
+type UsersPermissionsUserAggregatorMax {
+  cedula: Float
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  _id: [UsersPermissionsUserConnection_id]
+  createdAt: [UsersPermissionsUserConnectionCreatedAt]
+  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+  nombres: [UsersPermissionsUserConnectionNombres]
+  apellidos: [UsersPermissionsUserConnectionApellidos]
+  cedula: [UsersPermissionsUserConnectionCedula]
+  perfil: [UsersPermissionsUserConnectionPerfil]
+  telefono: [UsersPermissionsUserConnectionTelefono]
+  avatar: [UsersPermissionsUserConnectionAvatar]
+  estado: [UsersPermissionsUserConnectionEstado]
+  terminos_y_condiciones: [UsersPermissionsUserConnectionTerminos_y_condiciones]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreatedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdatedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionNombres {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionApellidos {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCedula {
+  key: Int
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionPerfil {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionTelefono {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionAvatar {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEstado {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionTerminos_y_condiciones {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  nombres: String
+  apellidos: String
+  cedula: Int
+  perfil: ID
+  empresas: [ID]
+  telefono: String
+  avatar: ID
+  estado: Boolean
+  terminos_y_condiciones: Boolean
+  direcciones_usuarios: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  nombres: String
+  apellidos: String
+  cedula: Int
+  perfil: ID
+  empresas: [ID]
+  telefono: String
+  avatar: ID
+  estado: Boolean
+  terminos_y_condiciones: Boolean
+  direcciones_usuarios: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Cajas | CajasConnection | CajasAggregator | CajasAggregatorSum | CajasAggregatorAvg | CajasAggregatorMin | CajasAggregatorMax | CajasGroupBy | CajasConnectionId | CajasConnection_id | CajasConnectionCreatedAt | CajasConnectionUpdatedAt | CajasConnectionRepartidor | CajasConnectionDebe | CajasConnectionHaber | CajasConnectionPublished_at | createCajaPayload | updateCajaPayload | deleteCajaPayload | CalificacionEmpresas | CalificacionEmpresasConnection | CalificacionEmpresasAggregator | CalificacionEmpresasAggregatorSum | CalificacionEmpresasAggregatorAvg | CalificacionEmpresasAggregatorMin | CalificacionEmpresasAggregatorMax | CalificacionEmpresasGroupBy | CalificacionEmpresasConnectionId | CalificacionEmpresasConnection_id | CalificacionEmpresasConnectionCreatedAt | CalificacionEmpresasConnectionUpdatedAt | CalificacionEmpresasConnectionPuntaje | CalificacionEmpresasConnectionUsuario | CalificacionEmpresasConnectionEmpresa | CalificacionEmpresasConnectionComentario | CalificacionEmpresasConnectionPublished_at | createCalificacionEmpresaPayload | updateCalificacionEmpresaPayload | deleteCalificacionEmpresaPayload | CalificacionRepartidores | CalificacionRepartidoresConnection | CalificacionRepartidoresAggregator | CalificacionRepartidoresAggregatorSum | CalificacionRepartidoresAggregatorAvg | CalificacionRepartidoresAggregatorMin | CalificacionRepartidoresAggregatorMax | CalificacionRepartidoresGroupBy | CalificacionRepartidoresConnectionId | CalificacionRepartidoresConnection_id | CalificacionRepartidoresConnectionCreatedAt | CalificacionRepartidoresConnectionUpdatedAt | CalificacionRepartidoresConnectionPuntaje | CalificacionRepartidoresConnectionComentario | CalificacionRepartidoresConnectionRepartidor | CalificacionRepartidoresConnectionOrden | CalificacionRepartidoresConnectionPublished_at | createCalificacionRepartidorePayload | updateCalificacionRepartidorePayload | deleteCalificacionRepartidorePayload | Categorias | CategoriasConnection | CategoriasAggregator | CategoriasGroupBy | CategoriasConnectionId | CategoriasConnection_id | CategoriasConnectionCreatedAt | CategoriasConnectionUpdatedAt | CategoriasConnectionNombre | CategoriasConnectionDescripcion | CategoriasConnectionIcono | CategoriasConnectionPublished_at | createCategoriaPayload | updateCategoriaPayload | deleteCategoriaPayload | Configuracion | ConfiguracionConnection | ConfiguracionAggregator | ConfiguracionAggregatorSum | ConfiguracionAggregatorAvg | ConfiguracionAggregatorMin | ConfiguracionAggregatorMax | ConfiguracionGroupBy | ConfiguracionConnectionId | ConfiguracionConnection_id | ConfiguracionConnectionCreatedAt | ConfiguracionConnectionUpdatedAt | ConfiguracionConnectionNombre | ConfiguracionConnectionArranque | ConfiguracionConnectionValor_km | ConfiguracionConnectionIva | ConfiguracionConnectionValor_minimo | ConfiguracionConnectionArranque_repartidor | ConfiguracionConnectionTerminos_y_condiciones | ConfiguracionConnectionPublished_at | createConfiguracionPayload | updateConfiguracionPayload | deleteConfiguracionPayload | Correos | CorreosConnection | CorreosAggregator | CorreosGroupBy | CorreosConnectionId | CorreosConnection_id | CorreosConnectionCreatedAt | CorreosConnectionUpdatedAt | CorreosConnectionEmail | CorreosConnectionCodigo | CorreosConnectionValidacion | CorreosConnectionPublished_at | createCorreoPayload | updateCorreoPayload | deleteCorreoPayload | Dias | DiasConnection | DiasAggregator | DiasAggregatorSum | DiasAggregatorAvg | DiasAggregatorMin | DiasAggregatorMax | DiasGroupBy | DiasConnectionId | DiasConnection_id | DiasConnectionCreatedAt | DiasConnectionUpdatedAt | DiasConnectionKey | DiasConnectionNombre | DiasConnectionHorario_empresa | DiasConnectionPublished_at | createDiaPayload | updateDiaPayload | deleteDiaPayload | DireccionesUsuarios | DireccionesUsuariosConnection | DireccionesUsuariosAggregator | DireccionesUsuariosAggregatorSum | DireccionesUsuariosAggregatorAvg | DireccionesUsuariosAggregatorMin | DireccionesUsuariosAggregatorMax | DireccionesUsuariosGroupBy | DireccionesUsuariosConnectionId | DireccionesUsuariosConnection_id | DireccionesUsuariosConnectionCreatedAt | DireccionesUsuariosConnectionUpdatedAt | DireccionesUsuariosConnectionLatitud | DireccionesUsuariosConnectionLongitud | DireccionesUsuariosConnectionReferencia | DireccionesUsuariosConnectionEstado | DireccionesUsuariosConnectionUsuario | DireccionesUsuariosConnectionDireccion | DireccionesUsuariosConnectionOrdene | DireccionesUsuariosConnectionPublished_at | createDireccionesUsuarioPayload | updateDireccionesUsuarioPayload | deleteDireccionesUsuarioPayload | Direcciones | DireccionesConnection | DireccionesAggregator | DireccionesAggregatorSum | DireccionesAggregatorAvg | DireccionesAggregatorMin | DireccionesAggregatorMax | DireccionesGroupBy | DireccionesConnectionId | DireccionesConnection_id | DireccionesConnectionCreatedAt | DireccionesConnectionUpdatedAt | DireccionesConnectionLatitud | DireccionesConnectionLongitud | DireccionesConnectionDireccion | DireccionesConnectionEmpresa | DireccionesConnectionPublished_at | createDireccionePayload | updateDireccionePayload | deleteDireccionePayload | Empresas | EmpresasConnection | EmpresasAggregator | EmpresasAggregatorSum | EmpresasAggregatorAvg | EmpresasAggregatorMin | EmpresasAggregatorMax | EmpresasGroupBy | EmpresasConnectionId | EmpresasConnection_id | EmpresasConnectionCreatedAt | EmpresasConnectionUpdatedAt | EmpresasConnectionNombre | EmpresasConnectionDescripcion | EmpresasConnectionPagina_web | EmpresasConnectionRuc | EmpresasConnectionTelefono | EmpresasConnectionAvatar | EmpresasConnectionDireccion | EmpresasConnectionConfiguracion | EmpresasConnectionEstado | EmpresasConnectionUser | EmpresasConnectionComisionBmas | EmpresasConnectionAceptar_pedidos | EmpresasConnectionTotalkms | EmpresasConnectionPublished_at | createEmpresaPayload | updateEmpresaPayload | deleteEmpresaPayload | Entrega | EntregaConnection | EntregaAggregator | EntregaAggregatorSum | EntregaAggregatorAvg | EntregaAggregatorMin | EntregaAggregatorMax | EntregaGroupBy | EntregaConnectionId | EntregaConnection_id | EntregaConnectionCreatedAt | EntregaConnectionUpdatedAt | EntregaConnectionUsuario | EntregaConnectionCliente | EntregaConnectionFecha | EntregaConnectionHora | EntregaConnectionTelefono | EntregaConnectionOrigen | EntregaConnectionDestino | EntregaConnectionCantidadkms | EntregaConnectionValorkm | EntregaConnectionCostokms | EntregaConnectionKmadicional | EntregaConnectionObservacion | EntregaConnectionEmpresa | EntregaConnectionBmasValorkm | EntregaConnectionBmasCalculokms | EntregaConnectionValorTotalEntrega | EntregaConnectionPublished_at | createEntregaPayload | updateEntregaPayload | deleteEntregaPayload | Errores | ErroresConnection | ErroresAggregator | ErroresGroupBy | ErroresConnectionId | ErroresConnection_id | ErroresConnectionCreatedAt | ErroresConnectionUpdatedAt | ErroresConnectionUsuario | ErroresConnectionError | ErroresConnectionPublished_at | createErrorePayload | updateErrorePayload | deleteErrorePayload | FacturacionUsuarios | FacturacionUsuariosConnection | FacturacionUsuariosAggregator | FacturacionUsuariosGroupBy | FacturacionUsuariosConnectionId | FacturacionUsuariosConnection_id | FacturacionUsuariosConnectionCreatedAt | FacturacionUsuariosConnectionUpdatedAt | FacturacionUsuariosConnectionNombres | FacturacionUsuariosConnectionDireccion | FacturacionUsuariosConnectionCorreo | FacturacionUsuariosConnectionEstado | FacturacionUsuariosConnectionUsuario | FacturacionUsuariosConnectionCedula | FacturacionUsuariosConnectionPublished_at | createFacturacionUsuarioPayload | updateFacturacionUsuarioPayload | deleteFacturacionUsuarioPayload | HorarioEmpresas | HorarioEmpresasConnection | HorarioEmpresasAggregator | HorarioEmpresasGroupBy | HorarioEmpresasConnectionId | HorarioEmpresasConnection_id | HorarioEmpresasConnectionCreatedAt | HorarioEmpresasConnectionUpdatedAt | HorarioEmpresasConnectionEmpresa | HorarioEmpresasConnectionHora_inicio | HorarioEmpresasConnectionHora_final | HorarioEmpresasConnectionPublished_at | createHorarioEmpresaPayload | updateHorarioEmpresaPayload | deleteHorarioEmpresaPayload | Horarios | HorariosConnection | HorariosAggregator | HorariosAggregatorSum | HorariosAggregatorAvg | HorariosAggregatorMin | HorariosAggregatorMax | HorariosGroupBy | HorariosConnectionId | HorariosConnection_id | HorariosConnectionCreatedAt | HorariosConnectionUpdatedAt | HorariosConnectionPorcentaje | HorariosConnectionH_inicio | HorariosConnectionH_final | HorariosConnectionNombre | HorariosConnectionPublished_at | createHorarioPayload | updateHorarioPayload | deleteHorarioPayload | Mensajes | MensajesConnection | MensajesAggregator | MensajesGroupBy | MensajesConnectionId | MensajesConnection_id | MensajesConnectionCreatedAt | MensajesConnectionUpdatedAt | MensajesConnectionOrden | MensajesConnectionUsuario | MensajesConnectionEstado | MensajesConnectionMensaje | MensajesConnectionPublished_at | createMensajePayload | updateMensajePayload | deleteMensajePayload | MenuEmpresas | MenuEmpresasConnection | MenuEmpresasAggregator | MenuEmpresasAggregatorSum | MenuEmpresasAggregatorAvg | MenuEmpresasAggregatorMin | MenuEmpresasAggregatorMax | MenuEmpresasGroupBy | MenuEmpresasConnectionId | MenuEmpresasConnection_id | MenuEmpresasConnectionCreatedAt | MenuEmpresasConnectionUpdatedAt | MenuEmpresasConnectionOrden | MenuEmpresasConnectionUrl | MenuEmpresasConnectionName | MenuEmpresasConnectionIcon | MenuEmpresasConnectionPerfil | MenuEmpresasConnectionPublished_at | createMenuEmpresaPayload | updateMenuEmpresaPayload | deleteMenuEmpresaPayload | OpcionesProductos | OpcionesProductosConnection | OpcionesProductosAggregator | OpcionesProductosAggregatorSum | OpcionesProductosAggregatorAvg | OpcionesProductosAggregatorMin | OpcionesProductosAggregatorMax | OpcionesProductosGroupBy | OpcionesProductosConnectionId | OpcionesProductosConnection_id | OpcionesProductosConnectionCreatedAt | OpcionesProductosConnectionUpdatedAt | OpcionesProductosConnectionNombre | OpcionesProductosConnectionDescripcion | OpcionesProductosConnectionCantidad | OpcionesProductosConnectionPrecio | OpcionesProductosConnectionEstado | OpcionesProductosConnectionPublished_at | createOpcionesProductoPayload | updateOpcionesProductoPayload | deleteOpcionesProductoPayload | OrdenesProductos | OrdenesProductosConnection | OrdenesProductosAggregator | OrdenesProductosAggregatorSum | OrdenesProductosAggregatorAvg | OrdenesProductosAggregatorMin | OrdenesProductosAggregatorMax | OrdenesProductosGroupBy | OrdenesProductosConnectionId | OrdenesProductosConnection_id | OrdenesProductosConnectionCreatedAt | OrdenesProductosConnectionUpdatedAt | OrdenesProductosConnectionOrden | OrdenesProductosConnectionProducto | OrdenesProductosConnectionCantidad | OrdenesProductosConnectionPublished_at | createOrdenesProductoPayload | updateOrdenesProductoPayload | deleteOrdenesProductoPayload | Ordenes | OrdenesConnection | OrdenesAggregator | OrdenesAggregatorSum | OrdenesAggregatorAvg | OrdenesAggregatorMin | OrdenesAggregatorMax | OrdenesGroupBy | OrdenesConnectionId | OrdenesConnection_id | OrdenesConnectionCreatedAt | OrdenesConnectionUpdatedAt | OrdenesConnectionUsuario | OrdenesConnectionEstado | OrdenesConnectionFacturacion_usuario | OrdenesConnectionDirecciones_usuario | OrdenesConnectionPagado | OrdenesConnectionPayphone | OrdenesConnectionEmpresa | OrdenesConnectionEntregaEmpresa | OrdenesConnectionEntregaScooter | OrdenesConnectionEntregaFinalizado | OrdenesConnectionPagoEfectivo | OrdenesConnectionSucursal | OrdenesConnectionRepartidor | OrdenesConnectionDistancia_empresa | OrdenesConnectionDuracion_empresa | OrdenesConnectionDistancia_cliente | OrdenesConnectionDuracion_cliente | OrdenesConnectionTotal | OrdenesConnectionSubtotal_delivery | OrdenesConnectionTotal_delivery | OrdenesConnectionKm_delivery | OrdenesConnectionConfiguracion | OrdenesConnectionPolyline | OrdenesConnectionPorcentaje | OrdenesConnectionComisionBmas | OrdenesConnectionId_orden_contifico | OrdenesConnectionPago_recibido | OrdenesConnectionAcepta_empresa | OrdenesConnectionAcepta_repartidor | OrdenesConnectionRecoge_repartidor | OrdenesConnectionEntrega_repartidor | OrdenesConnectionEfectivo_cliente | OrdenesConnectionPublished_at | createOrdenePayload | updateOrdenePayload | deleteOrdenePayload | Paises | PaisesConnection | PaisesAggregator | PaisesAggregatorSum | PaisesAggregatorAvg | PaisesAggregatorMin | PaisesAggregatorMax | PaisesGroupBy | PaisesConnectionId | PaisesConnection_id | PaisesConnectionCreatedAt | PaisesConnectionUpdatedAt | PaisesConnectionCodigo | PaisesConnectionNombre | PaisesConnectionMoneda | PaisesConnectionImpuesto | PaisesConnectionPorcentaje_competencia | PaisesConnectionPorcentaje_bmas | PaisesConnectionPorcentaje_bmas_lluvia | PaisesConnectionValor_km | PaisesConnectionValor_km_lluvia | PaisesConnectionPorcentaje_chofer | PaisesConnectionSimbolo | PaisesConnectionKm_redonda | PaisesConnectionPublished_at | createPaisePayload | updatePaisePayload | deletePaisePayload | Payphone | PayphoneConnection | PayphoneAggregator | PayphoneGroupBy | PayphoneConnectionId | PayphoneConnection_id | PayphoneConnectionCreatedAt | PayphoneConnectionUpdatedAt | PayphoneConnectionUsuario | PayphoneConnectionEstado | PayphoneConnectionCelular | PayphoneConnectionPublished_at | createPayphonePayload | updatePayphonePayload | deletePayphonePayload | Perfiles | PerfilesConnection | PerfilesAggregator | PerfilesGroupBy | PerfilesConnectionId | PerfilesConnection_id | PerfilesConnectionCreatedAt | PerfilesConnectionUpdatedAt | PerfilesConnectionNombre | PerfilesConnectionDescripcion | PerfilesConnectionPublished_at | createPerfilePayload | updatePerfilePayload | deletePerfilePayload | ProductoEmpresaStock | ProductoEmpresaStockConnection | ProductoEmpresaStockAggregator | ProductoEmpresaStockAggregatorSum | ProductoEmpresaStockAggregatorAvg | ProductoEmpresaStockAggregatorMin | ProductoEmpresaStockAggregatorMax | ProductoEmpresaStockGroupBy | ProductoEmpresaStockConnectionId | ProductoEmpresaStockConnection_id | ProductoEmpresaStockConnectionCreatedAt | ProductoEmpresaStockConnectionUpdatedAt | ProductoEmpresaStockConnectionProducto | ProductoEmpresaStockConnectionEmpresa | ProductoEmpresaStockConnectionStock | ProductoEmpresaStockConnectionPublished_at | createProductoEmpresaStockPayload | updateProductoEmpresaStockPayload | deleteProductoEmpresaStockPayload | ProductoSucursalStock | ProductoSucursalStockConnection | ProductoSucursalStockAggregator | ProductoSucursalStockAggregatorSum | ProductoSucursalStockAggregatorAvg | ProductoSucursalStockAggregatorMin | ProductoSucursalStockAggregatorMax | ProductoSucursalStockGroupBy | ProductoSucursalStockConnectionId | ProductoSucursalStockConnection_id | ProductoSucursalStockConnectionCreatedAt | ProductoSucursalStockConnectionUpdatedAt | ProductoSucursalStockConnectionProducto | ProductoSucursalStockConnectionSucursale | ProductoSucursalStockConnectionStock | ProductoSucursalStockConnectionPublished_at | createProductoSucursalStockPayload | updateProductoSucursalStockPayload | deleteProductoSucursalStockPayload | Productos | ProductosConnection | ProductosAggregator | ProductosAggregatorSum | ProductosAggregatorAvg | ProductosAggregatorMin | ProductosAggregatorMax | ProductosGroupBy | ProductosConnectionId | ProductosConnection_id | ProductosConnectionCreatedAt | ProductosConnectionUpdatedAt | ProductosConnectionCodigo | ProductosConnectionNombre | ProductosConnectionDescripcion | ProductosConnectionImagen | ProductosConnectionEmpresa | ProductosConnectionPrecio | ProductosConnectionPromocione | ProductosConnectionOpciones | ProductosConnectionId_producto_contifico | ProductosConnectionPublished_at | createProductoPayload | updateProductoPayload | deleteProductoPayload | PromoEmpresas | PromoEmpresasConnection | PromoEmpresasAggregator | PromoEmpresasGroupBy | PromoEmpresasConnectionId | PromoEmpresasConnection_id | PromoEmpresasConnectionCreatedAt | PromoEmpresasConnectionUpdatedAt | PromoEmpresasConnectionNombre | PromoEmpresasConnectionFecha_fin | PromoEmpresasConnectionEstado | PromoEmpresasConnectionEmpresa | PromoEmpresasConnectionPublished_at | createPromoEmpresaPayload | updatePromoEmpresaPayload | deletePromoEmpresaPayload | Promociones | PromocionesConnection | PromocionesAggregator | PromocionesAggregatorSum | PromocionesAggregatorAvg | PromocionesAggregatorMin | PromocionesAggregatorMax | PromocionesGroupBy | PromocionesConnectionId | PromocionesConnection_id | PromocionesConnectionCreatedAt | PromocionesConnectionUpdatedAt | PromocionesConnectionDescripcion | PromocionesConnectionPorcentaje | PromocionesConnectionEstado | PromocionesConnectionEmpresa | PromocionesConnectionPublished_at | createPromocionePayload | updatePromocionePayload | deletePromocionePayload | RecargasKms | RecargasKmsConnection | RecargasKmsAggregator | RecargasKmsAggregatorSum | RecargasKmsAggregatorAvg | RecargasKmsAggregatorMin | RecargasKmsAggregatorMax | RecargasKmsGroupBy | RecargasKmsConnectionId | RecargasKmsConnection_id | RecargasKmsConnectionCreatedAt | RecargasKmsConnectionUpdatedAt | RecargasKmsConnectionFecha | RecargasKmsConnectionCantidadkms | RecargasKmsConnectionValorkm | RecargasKmsConnectionKmcosto | RecargasKmsConnectionBanco | RecargasKmsConnectionKmsfuerarango | RecargasKmsConnectionValoradicional | RecargasKmsConnectionCalculoadicional | RecargasKmsConnectionSubtotal | RecargasKmsConnectionIva | RecargasKmsConnectionTotaliva | RecargasKmsConnectionTotal | RecargasKmsConnectionValormotorizado | RecargasKmsConnectionTotalmotorizado | RecargasKmsConnectionBmasganancia | RecargasKmsConnectionEmpresa | RecargasKmsConnectionObservacion | RecargasKmsConnectionPublished_at | createRecargasKmPayload | updateRecargasKmPayload | deleteRecargasKmPayload | Rutas | RutasConnection | RutasAggregator | RutasAggregatorSum | RutasAggregatorAvg | RutasAggregatorMin | RutasAggregatorMax | RutasGroupBy | RutasConnectionId | RutasConnection_id | RutasConnectionCreatedAt | RutasConnectionUpdatedAt | RutasConnectionOrden | RutasConnectionRepartidor | RutasConnectionLatitud | RutasConnectionLongitud | RutasConnectionPublished_at | createRutaPayload | updateRutaPayload | deleteRutaPayload | Sucursales | SucursalesConnection | SucursalesAggregator | SucursalesAggregatorSum | SucursalesAggregatorAvg | SucursalesAggregatorMin | SucursalesAggregatorMax | SucursalesGroupBy | SucursalesConnectionId | SucursalesConnection_id | SucursalesConnectionCreatedAt | SucursalesConnectionUpdatedAt | SucursalesConnectionNombre | SucursalesConnectionTelefono | SucursalesConnectionEstado | SucursalesConnectionDireccion | SucursalesConnectionEmpresa | SucursalesConnectionPublished_at | createSucursalePayload | updateSucursalePayload | deleteSucursalePayload | UserSaldo | UserSaldoConnection | UserSaldoAggregator | UserSaldoAggregatorSum | UserSaldoAggregatorAvg | UserSaldoAggregatorMin | UserSaldoAggregatorMax | UserSaldoGroupBy | UserSaldoConnectionId | UserSaldoConnection_id | UserSaldoConnectionCreatedAt | UserSaldoConnectionUpdatedAt | UserSaldoConnectionUsuario | UserSaldoConnectionMonto | UserSaldoConnectionFormapago | UserSaldoConnectionBanco | UserSaldoConnectionReferencia | UserSaldoConnectionObservacion | UserSaldoConnectionFecha | UserSaldoConnectionTipo | UserSaldoConnectionPublished_at | createUserSaldoPayload | updateUserSaldoPayload | deleteUserSaldoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserAggregatorSum | UsersPermissionsUserAggregatorAvg | UsersPermissionsUserAggregatorMin | UsersPermissionsUserAggregatorMax | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionNombres | UsersPermissionsUserConnectionApellidos | UsersPermissionsUserConnectionCedula | UsersPermissionsUserConnectionPerfil | UsersPermissionsUserConnectionTelefono | UsersPermissionsUserConnectionAvatar | UsersPermissionsUserConnectionEstado | UsersPermissionsUserConnectionTerminos_y_condiciones | createUserPayload | updateUserPayload | deleteUserPayload
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  caja(id: ID!, publicationState: PublicationState): Cajas
+  cajas(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Cajas]
+  cajasConnection(sort: String, limit: Int, start: Int, where: JSON): CajasConnection
+  calificacionEmpresa(id: ID!, publicationState: PublicationState): CalificacionEmpresas
+  calificacionEmpresas(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [CalificacionEmpresas]
+  calificacionEmpresasConnection(sort: String, limit: Int, start: Int, where: JSON): CalificacionEmpresasConnection
+  calificacionRepartidore(id: ID!, publicationState: PublicationState): CalificacionRepartidores
+  calificacionRepartidores(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [CalificacionRepartidores]
+  calificacionRepartidoresConnection(sort: String, limit: Int, start: Int, where: JSON): CalificacionRepartidoresConnection
+  categoria(id: ID!, publicationState: PublicationState): Categorias
+  categorias(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Categorias]
+  categoriasConnection(sort: String, limit: Int, start: Int, where: JSON): CategoriasConnection
+  configuracion(id: ID!, publicationState: PublicationState): Configuracion
+  configuracions(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Configuracion]
+  configuracionsConnection(sort: String, limit: Int, start: Int, where: JSON): ConfiguracionConnection
+  correo(id: ID!, publicationState: PublicationState): Correos
+  correos(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Correos]
+  correosConnection(sort: String, limit: Int, start: Int, where: JSON): CorreosConnection
+  dia(id: ID!, publicationState: PublicationState): Dias
+  dias(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Dias]
+  diasConnection(sort: String, limit: Int, start: Int, where: JSON): DiasConnection
+  direccionesUsuario(id: ID!, publicationState: PublicationState): DireccionesUsuarios
+  direccionesUsuarios(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [DireccionesUsuarios]
+  direccionesUsuariosConnection(sort: String, limit: Int, start: Int, where: JSON): DireccionesUsuariosConnection
+  direccione(id: ID!, publicationState: PublicationState): Direcciones
+  direcciones(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Direcciones]
+  direccionesConnection(sort: String, limit: Int, start: Int, where: JSON): DireccionesConnection
+  empresa(id: ID!, publicationState: PublicationState): Empresas
+  empresas(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Empresas]
+  empresasConnection(sort: String, limit: Int, start: Int, where: JSON): EmpresasConnection
+  entrega(id: ID!, publicationState: PublicationState): Entrega
+  entregas(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Entrega]
+  entregasConnection(sort: String, limit: Int, start: Int, where: JSON): EntregaConnection
+  errore(id: ID!, publicationState: PublicationState): Errores
+  errores(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Errores]
+  erroresConnection(sort: String, limit: Int, start: Int, where: JSON): ErroresConnection
+  facturacionUsuario(id: ID!, publicationState: PublicationState): FacturacionUsuarios
+  facturacionUsuarios(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [FacturacionUsuarios]
+  facturacionUsuariosConnection(sort: String, limit: Int, start: Int, where: JSON): FacturacionUsuariosConnection
+  horarioEmpresa(id: ID!, publicationState: PublicationState): HorarioEmpresas
+  horarioEmpresas(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [HorarioEmpresas]
+  horarioEmpresasConnection(sort: String, limit: Int, start: Int, where: JSON): HorarioEmpresasConnection
+  horario(id: ID!, publicationState: PublicationState): Horarios
+  horarios(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Horarios]
+  horariosConnection(sort: String, limit: Int, start: Int, where: JSON): HorariosConnection
+  mensaje(id: ID!, publicationState: PublicationState): Mensajes
+  mensajes(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Mensajes]
+  mensajesConnection(sort: String, limit: Int, start: Int, where: JSON): MensajesConnection
+  menuEmpresa(id: ID!, publicationState: PublicationState): MenuEmpresas
+  menuEmpresas(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [MenuEmpresas]
+  menuEmpresasConnection(sort: String, limit: Int, start: Int, where: JSON): MenuEmpresasConnection
+  opcionesProducto(id: ID!, publicationState: PublicationState): OpcionesProductos
+  opcionesProductos(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [OpcionesProductos]
+  opcionesProductosConnection(sort: String, limit: Int, start: Int, where: JSON): OpcionesProductosConnection
+  ordenesProducto(id: ID!, publicationState: PublicationState): OrdenesProductos
+  ordenesProductos(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [OrdenesProductos]
+  ordenesProductosConnection(sort: String, limit: Int, start: Int, where: JSON): OrdenesProductosConnection
+  ordene(id: ID!, publicationState: PublicationState): Ordenes
+  ordenes(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Ordenes]
+  ordenesConnection(sort: String, limit: Int, start: Int, where: JSON): OrdenesConnection
+  paise(id: ID!, publicationState: PublicationState): Paises
+  paises(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Paises]
+  paisesConnection(sort: String, limit: Int, start: Int, where: JSON): PaisesConnection
+  payphone(id: ID!, publicationState: PublicationState): Payphone
+  payphones(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Payphone]
+  payphonesConnection(sort: String, limit: Int, start: Int, where: JSON): PayphoneConnection
+  perfile(id: ID!, publicationState: PublicationState): Perfiles
+  perfiles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Perfiles]
+  perfilesConnection(sort: String, limit: Int, start: Int, where: JSON): PerfilesConnection
+  productoEmpresaStock(id: ID!, publicationState: PublicationState): ProductoEmpresaStock
+  productoEmpresaStocks(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [ProductoEmpresaStock]
+  productoEmpresaStocksConnection(sort: String, limit: Int, start: Int, where: JSON): ProductoEmpresaStockConnection
+  productoSucursalStock(id: ID!, publicationState: PublicationState): ProductoSucursalStock
+  productoSucursalStocks(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [ProductoSucursalStock]
+  productoSucursalStocksConnection(sort: String, limit: Int, start: Int, where: JSON): ProductoSucursalStockConnection
+  producto(id: ID!, publicationState: PublicationState): Productos
+  productos(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Productos]
+  productosConnection(sort: String, limit: Int, start: Int, where: JSON): ProductosConnection
+  promoEmpresa(id: ID!, publicationState: PublicationState): PromoEmpresas
+  promoEmpresas(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [PromoEmpresas]
+  promoEmpresasConnection(sort: String, limit: Int, start: Int, where: JSON): PromoEmpresasConnection
+  promocione(id: ID!, publicationState: PublicationState): Promociones
+  promociones(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Promociones]
+  promocionesConnection(sort: String, limit: Int, start: Int, where: JSON): PromocionesConnection
+  recargasKm(id: ID!, publicationState: PublicationState): RecargasKms
+  recargasKms(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [RecargasKms]
+  recargasKmsConnection(sort: String, limit: Int, start: Int, where: JSON): RecargasKmsConnection
+  ruta(id: ID!, publicationState: PublicationState): Rutas
+  rutas(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Rutas]
+  rutasConnection(sort: String, limit: Int, start: Int, where: JSON): RutasConnection
+  sucursale(id: ID!, publicationState: PublicationState): Sucursales
+  sucursales(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Sucursales]
+  sucursalesConnection(sort: String, limit: Int, start: Int, where: JSON): SucursalesConnection
+  userSaldo(id: ID!, publicationState: PublicationState): UserSaldo
+  userSaldos(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UserSaldo]
+  userSaldosConnection(sort: String, limit: Int, start: Int, where: JSON): UserSaldoConnection
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createCaja(input: createCajaInput): createCajaPayload
+  updateCaja(input: updateCajaInput): updateCajaPayload
+  deleteCaja(input: deleteCajaInput): deleteCajaPayload
+  createCalificacionEmpresa(input: createCalificacionEmpresaInput): createCalificacionEmpresaPayload
+  updateCalificacionEmpresa(input: updateCalificacionEmpresaInput): updateCalificacionEmpresaPayload
+  deleteCalificacionEmpresa(input: deleteCalificacionEmpresaInput): deleteCalificacionEmpresaPayload
+  createCalificacionRepartidore(input: createCalificacionRepartidoreInput): createCalificacionRepartidorePayload
+  updateCalificacionRepartidore(input: updateCalificacionRepartidoreInput): updateCalificacionRepartidorePayload
+  deleteCalificacionRepartidore(input: deleteCalificacionRepartidoreInput): deleteCalificacionRepartidorePayload
+  createCategoria(input: createCategoriaInput): createCategoriaPayload
+  updateCategoria(input: updateCategoriaInput): updateCategoriaPayload
+  deleteCategoria(input: deleteCategoriaInput): deleteCategoriaPayload
+  createConfiguracion(input: createConfiguracionInput): createConfiguracionPayload
+  updateConfiguracion(input: updateConfiguracionInput): updateConfiguracionPayload
+  deleteConfiguracion(input: deleteConfiguracionInput): deleteConfiguracionPayload
+  createCorreo(input: createCorreoInput): createCorreoPayload
+  updateCorreo(input: updateCorreoInput): updateCorreoPayload
+  deleteCorreo(input: deleteCorreoInput): deleteCorreoPayload
+  createDia(input: createDiaInput): createDiaPayload
+  updateDia(input: updateDiaInput): updateDiaPayload
+  deleteDia(input: deleteDiaInput): deleteDiaPayload
+  createDireccionesUsuario(input: createDireccionesUsuarioInput): createDireccionesUsuarioPayload
+  updateDireccionesUsuario(input: updateDireccionesUsuarioInput): updateDireccionesUsuarioPayload
+  deleteDireccionesUsuario(input: deleteDireccionesUsuarioInput): deleteDireccionesUsuarioPayload
+  createDireccione(input: createDireccioneInput): createDireccionePayload
+  updateDireccione(input: updateDireccioneInput): updateDireccionePayload
+  deleteDireccione(input: deleteDireccioneInput): deleteDireccionePayload
+  createEmpresa(input: createEmpresaInput): createEmpresaPayload
+  updateEmpresa(input: updateEmpresaInput): updateEmpresaPayload
+  deleteEmpresa(input: deleteEmpresaInput): deleteEmpresaPayload
+  createEntrega(input: createEntregaInput): createEntregaPayload
+  updateEntrega(input: updateEntregaInput): updateEntregaPayload
+  deleteEntrega(input: deleteEntregaInput): deleteEntregaPayload
+  createErrore(input: createErroreInput): createErrorePayload
+  updateErrore(input: updateErroreInput): updateErrorePayload
+  deleteErrore(input: deleteErroreInput): deleteErrorePayload
+  createFacturacionUsuario(input: createFacturacionUsuarioInput): createFacturacionUsuarioPayload
+  updateFacturacionUsuario(input: updateFacturacionUsuarioInput): updateFacturacionUsuarioPayload
+  deleteFacturacionUsuario(input: deleteFacturacionUsuarioInput): deleteFacturacionUsuarioPayload
+  createHorarioEmpresa(input: createHorarioEmpresaInput): createHorarioEmpresaPayload
+  updateHorarioEmpresa(input: updateHorarioEmpresaInput): updateHorarioEmpresaPayload
+  deleteHorarioEmpresa(input: deleteHorarioEmpresaInput): deleteHorarioEmpresaPayload
+  createHorario(input: createHorarioInput): createHorarioPayload
+  updateHorario(input: updateHorarioInput): updateHorarioPayload
+  deleteHorario(input: deleteHorarioInput): deleteHorarioPayload
+  createMensaje(input: createMensajeInput): createMensajePayload
+  updateMensaje(input: updateMensajeInput): updateMensajePayload
+  deleteMensaje(input: deleteMensajeInput): deleteMensajePayload
+  createMenuEmpresa(input: createMenuEmpresaInput): createMenuEmpresaPayload
+  updateMenuEmpresa(input: updateMenuEmpresaInput): updateMenuEmpresaPayload
+  deleteMenuEmpresa(input: deleteMenuEmpresaInput): deleteMenuEmpresaPayload
+  createOpcionesProducto(input: createOpcionesProductoInput): createOpcionesProductoPayload
+  updateOpcionesProducto(input: updateOpcionesProductoInput): updateOpcionesProductoPayload
+  deleteOpcionesProducto(input: deleteOpcionesProductoInput): deleteOpcionesProductoPayload
+  createOrdenesProducto(input: createOrdenesProductoInput): createOrdenesProductoPayload
+  updateOrdenesProducto(input: updateOrdenesProductoInput): updateOrdenesProductoPayload
+  deleteOrdenesProducto(input: deleteOrdenesProductoInput): deleteOrdenesProductoPayload
+  createOrdene(input: createOrdeneInput): createOrdenePayload
+  updateOrdene(input: updateOrdeneInput): updateOrdenePayload
+  deleteOrdene(input: deleteOrdeneInput): deleteOrdenePayload
+  createPaise(input: createPaiseInput): createPaisePayload
+  updatePaise(input: updatePaiseInput): updatePaisePayload
+  deletePaise(input: deletePaiseInput): deletePaisePayload
+  createPayphone(input: createPayphoneInput): createPayphonePayload
+  updatePayphone(input: updatePayphoneInput): updatePayphonePayload
+  deletePayphone(input: deletePayphoneInput): deletePayphonePayload
+  createPerfile(input: createPerfileInput): createPerfilePayload
+  updatePerfile(input: updatePerfileInput): updatePerfilePayload
+  deletePerfile(input: deletePerfileInput): deletePerfilePayload
+  createProductoEmpresaStock(input: createProductoEmpresaStockInput): createProductoEmpresaStockPayload
+  updateProductoEmpresaStock(input: updateProductoEmpresaStockInput): updateProductoEmpresaStockPayload
+  deleteProductoEmpresaStock(input: deleteProductoEmpresaStockInput): deleteProductoEmpresaStockPayload
+  createProductoSucursalStock(input: createProductoSucursalStockInput): createProductoSucursalStockPayload
+  updateProductoSucursalStock(input: updateProductoSucursalStockInput): updateProductoSucursalStockPayload
+  deleteProductoSucursalStock(input: deleteProductoSucursalStockInput): deleteProductoSucursalStockPayload
+  createProducto(input: createProductoInput): createProductoPayload
+  updateProducto(input: updateProductoInput): updateProductoPayload
+  deleteProducto(input: deleteProductoInput): deleteProductoPayload
+  createPromoEmpresa(input: createPromoEmpresaInput): createPromoEmpresaPayload
+  updatePromoEmpresa(input: updatePromoEmpresaInput): updatePromoEmpresaPayload
+  deletePromoEmpresa(input: deletePromoEmpresaInput): deletePromoEmpresaPayload
+  createPromocione(input: createPromocioneInput): createPromocionePayload
+  updatePromocione(input: updatePromocioneInput): updatePromocionePayload
+  deletePromocione(input: deletePromocioneInput): deletePromocionePayload
+  createRecargasKm(input: createRecargasKmInput): createRecargasKmPayload
+  updateRecargasKm(input: updateRecargasKmInput): updateRecargasKmPayload
+  deleteRecargasKm(input: deleteRecargasKmInput): deleteRecargasKmPayload
+  createRuta(input: createRutaInput): createRutaPayload
+  updateRuta(input: updateRutaInput): updateRutaPayload
+  deleteRuta(input: deleteRutaInput): deleteRutaPayload
+  createSucursale(input: createSucursaleInput): createSucursalePayload
+  updateSucursale(input: updateSucursaleInput): updateSucursalePayload
+  deleteSucursale(input: deleteSucursaleInput): deleteSucursalePayload
+  createUserSaldo(input: createUserSaldoInput): createUserSaldoPayload
+  updateUserSaldo(input: updateUserSaldoInput): updateUserSaldoPayload
+  deleteUserSaldo(input: deleteUserSaldoInput): deleteUserSaldoPayload
+
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
